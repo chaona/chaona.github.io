@@ -1,0 +1,19 @@
+---
+layout: list
+title: 智慧图书馆行业资讯 - 行业品牌网
+keywords: 新闻,资讯
+description: 智慧图书馆行业资讯、新闻、问答、评论。
+---
+
+<ul class="inline-list large-12 columns" style="padding-top: 20px;">
+  {% for post in site.posts %} 
+
+  <li class="large-12">
+    <span class="left">{{ post.date | date: "%Y-%m-%d" }}</span> 
+    <a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a>
+    {{ post.excerpt }}
+    <hr>
+  </li>
+  {% endfor %}
+
+</ul>
