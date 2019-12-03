@@ -1,10 +1,229 @@
-{% include header.html %}
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<meta charset="UTF-8">
+<title>{{ page.title }}</title>
+<meta name="keywords" content="{{ page.keywords }}">
+<meta name="description" content="{{ page.description }}">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=0">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="/static/css/inner.min.css" rel="stylesheet">
+<!--[if lt IE 9]>
+<script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+</head>
 
-<div class="mouth" id="mouth" style="background-color: #292929;">
-  <div class="container">
-    <h2 style="text-align: center;">{{ page.title }}</h2>
-      {{ content }}
-  </div>    
-</div>
+<body>
+<header>
+    <div class="box">
+	    <a href="index.html" title="4038工作室网站建设与制作"><img src="static/picture/logo_article.png" alt="4038工作室设计出品"></a>
+        <div class="wechat">
+    	    <img src="static/picture/wechat_code.jpg" alt="扫描关注4038工作室微信公众账号" class="wechat"><p>扫一扫微信二维码<i></i></p>
+        </div>
+        <nav>
+          <ul>
+            <li><a href="index.html">4038工作室</a></li>
+            
+            <li><a href="index2.html">设计案例</a></li>
+            <li class='active'><a href='' style='color:white;'>文章动态</a></li>
+            <li><a href="index4.html">响应测试</a></li>
+            
+          </ul>
+        </nav>
+    </div>
+    <footer>
+	    高端定制，品牌设计<br><u>2008 - 2016</u>作品集<br><a href="index.html" target="_blank">烟台网站建设与制作公司</a>
+    </footer>
+</header>
+    
+    <section class="toolbar">
+    	<a href="index.html" title="返回首页" class="homelink"><span class="glyphicon glyphicon-chevron-left"></span></a>
+    	<span class="switch glyphicon glyphicon-th-list"></span>
+        <div class="category btn-group">
+        	<a href="" class="btn btn-default btn-primary">全部</a>
+            
+        	<a href="index7.html" class="btn btn-default">公司新闻</a>
+            
+        	<a href="index5.html" class="btn btn-default">行业动态</a>
+            
+        	<a href="index8.html" class="btn btn-default">经验之谈</a>
+            
+        </div>
+    </section>
+    
+    <section class="artlist content">
+        <ul class="items">
+            <li>
+              <p class="left">
+                <span class="date">09<u>Jun</u></span>
+                <a href="92.html" target="_blank" class="thumb"><img src="static/picture/13320B393-0-lp.jpg" alt="千万别跟程序员过不去"></a>
+              </p>
+              <p class="right">
+                <span class="title"><a href="92.html" target="_blank">千万别跟程序员过不去</a></span>
+                <span class="rel">412天前<u>•</u>围观热度 5705<u>•</u><a href='index5.html'>行业动态</a></span>
+                <span class="summary">很多时候，历史就是这么轻易地被改变了，当你前几天还以为希拉里在美国大选中稳操胜券的时候，今天的剧情就翻版为特朗普入主白宫。一时间，以一行代码毁灭了希拉里的总统梦为 . . .</span>
+                <span class="tags">
+                	<span class="glyphicon glyphicon-tag"></span>
+                     
+                </span>
+              </p>
+            </li><li>
+              <p class="left">
+                <span class="date">09<u>Jun</u></span>
+                <a href="93.html" target="_blank" class="thumb"><img src="static/picture/1333525A5-0-lp.jpg" alt="编程语言排行榜，Java力压群雄，C#位列第四"></a>
+              </p>
+              <p class="right">
+                <span class="title"><a href="93.html" target="_blank">编程语言排行榜，Java力压群雄，C#位列第四</a></span>
+                <span class="rel">412天前<u>•</u>围观热度 6601<u>•</u><a href='index5.html'>行业动态</a></span>
+                <span class="summary">TIOBE 开发语言排行榜每月更新一次，新的开发语言也是层出不穷，不过 Java 和 C 语言的统治地位依然如故。本文我们来看下 11 月份的最新榜单，并重点分析下用于 网站建设 的编程语言 . . .</span>
+                <span class="tags">
+                	<span class="glyphicon glyphicon-tag"></span>
+                     
+                </span>
+              </p>
+            </li><li>
+              <p class="left">
+                <span class="date">09<u>Jun</u></span>
+                <a href="94.html" target="_blank" class="thumb"><img src="static/picture/133Q41008-0-lp.jpg" alt="DB-Engines 最新数据库排行榜"></a>
+              </p>
+              <p class="right">
+                <span class="title"><a href="94.html" target="_blank">DB-Engines 最新数据库排行榜</a></span>
+                <span class="rel">412天前<u>•</u>围观热度 6708<u>•</u><a href='index5.html'>行业动态</a></span>
+                <span class="summary">DB-Engines 是实时收集数据库信息、使用情况、市场占有率等数据的平台。DB-Engines 每月更新一次数据库管理系统（DBMS）的人气排名，并且可以通过图表形式进行对比。 今天，4038工作室来 . . .</span>
+                <span class="tags">
+                	<span class="glyphicon glyphicon-tag"></span>
+                     
+                </span>
+              </p>
+            </li><li>
+              <p class="left">
+                <span class="date">09<u>Jun</u></span>
+                <a href="91.html" target="_blank" class="thumb"><img src="static/picture/1331232260-0-lp.jpg" alt="网络安全法六大看点解析：以法律形式明确“网"></a>
+              </p>
+              <p class="right">
+                <span class="title"><a href="91.html" target="_blank">网络安全法六大看点解析：以法律形式明确“网</a></span>
+                <span class="rel">412天前<u>•</u>围观热度 5536<u>•</u><a href='index5.html'>行业动态</a></span>
+                <span class="summary">新华社北京11月7日电题：织就网络安全的法网网络安全法六大看点解析 新华社记者李亚红、朱基钗 7日，十二届全国人大常委会第二十四次会议表决通过了《中华人民共和国网络安全法 . . .</span>
+                <span class="tags">
+                	<span class="glyphicon glyphicon-tag"></span>
+                     
+                </span>
+              </p>
+            </li><li>
+              <p class="left">
+                <span class="date">09<u>Jun</u></span>
+                <a href="90.html" target="_blank" class="thumb"><img src="static/picture/1330453Q2-0-lp.jpg" alt="中国首部网络安全法经全国人大常委会表决通过"></a>
+              </p>
+              <p class="right">
+                <span class="title"><a href="90.html" target="_blank">中国首部网络安全法经全国人大常委会表决通过</a></span>
+                <span class="rel">412天前<u>•</u>围观热度 3868<u>•</u><a href='index5.html'>行业动态</a></span>
+                <span class="summary">十二届全国人大常委会第二十四次会议11月7日上午经表决，通过了《中华人民共和国网络安全法》。(新华社) 网络安全法将于2017年6月1日起施行 第十二届全国人大常委会第二十四次会议 . . .</span>
+                <span class="tags">
+                	<span class="glyphicon glyphicon-tag"></span>
+                     
+                </span>
+              </p>
+            </li><li>
+              <p class="left">
+                <span class="date">09<u>Jun</u></span>
+                <a href="89.html" target="_blank" class="thumb"><img src="static/picture/1329404156-0-lp.jpg" alt="1024程序员节，有多少改变世界的梦想从此诞生"></a>
+              </p>
+              <p class="right">
+                <span class="title"><a href="89.html" target="_blank">1024程序员节，有多少改变世界的梦想从此诞生</a></span>
+                <span class="rel">412天前<u>•</u>围观热度 375<u>•</u><a href='index5.html'>行业动态</a></span>
+                <span class="summary">今天在早高峰出行的路上，听1039广播，才知道今天10月24日是程序员节，说实话小编也不清楚什么时候我们亲爱的程序员们也有了自己的节日。不管怎样，首先祝所有从事代码编写工作 . . .</span>
+                <span class="tags">
+                	<span class="glyphicon glyphicon-tag"></span>
+                     
+                </span>
+              </p>
+            </li><li>
+              <p class="left">
+                <span class="date">27<u>Jan</u></span>
+                <a href="88.html" target="_blank" class="thumb"><img src="static/picture/2-1F12G25Q43L-lp.jpg" alt="4038工作室给您拜年啦！"></a>
+              </p>
+              <p class="right">
+                <span class="title"><a href="88.html" target="_blank">4038工作室给您拜年啦！</a></span>
+                <span class="rel">545天前<u>•</u>围观热度 610<u>•</u><a href='index7.html'>公司新闻</a></span>
+                <span class="summary">恭祝您在新的一年里 阖家欢乐 幸福安康 新年快乐！ . . .</span>
+                <span class="tags">
+                	<span class="glyphicon glyphicon-tag"></span>
+                     
+                </span>
+              </p>
+            </li><li>
+              <p class="left">
+                <span class="date">22<u>Jan</u></span>
+                <a href="87.html" target="_blank" class="thumb"><img src="static/picture/2-1F12G24TTS-lp.jpg" alt="2017年春节放假通知"></a>
+              </p>
+              <p class="right">
+                <span class="title"><a href="87.html" target="_blank">2017年春节放假通知</a></span>
+                <span class="rel">550天前<u>•</u>围观热度 635<u>•</u><a href='index7.html'>公司新闻</a></span>
+                <span class="summary">尊敬的客户 : 您好！ 根据国务院办公厅关于放假的通知，结合公司情况，201 7 年春节放假安排如下： 1 月 25 日（农历 二十八 ，周 三 ）--2月 3 日（初 七 ，周 五 ），放假共计 10 天。 . . .</span>
+                <span class="tags">
+                	<span class="glyphicon glyphicon-tag"></span>
+                    <a href="tags4.html">放假通知</a>&nbsp; 
+                </span>
+              </p>
+            </li><li>
+              <p class="left">
+                <span class="date">23<u>Dec</u></span>
+                <a href="86.html" target="_blank" class="thumb"><img src="static/picture/2-1612231532205A-lp.png" alt="送给你们11个月PPTV会员"></a>
+              </p>
+              <p class="right">
+                <span class="title"><a href="86.html" target="_blank">送给你们11个月PPTV会员</a></span>
+                <span class="rel">580天前<u>•</u>围观热度 2439<u>•</u><a href='index8.html'>经验之谈</a></span>
+                <span class="summary">苏宁4个 http://vip.pptv.com/activity/2016/snyg/sn001 http://vip.pptv.com/activity/2016/snyg/sn002 http://vip.pptv.com/activity/2016/snyg/sn003 http://vip.pptv.com/activity/2016/suningnet 滴滴2个 http://vip.pptv.com/activity/2016/didic . . .</span>
+                <span class="tags">
+                	<span class="glyphicon glyphicon-tag"></span>
+                    <a href="tags5.html">PPTV会员</a>&nbsp;<a href="tags6.html">PPTV</a>&nbsp;<a href="tags7.html">会员</a>&nbsp; 
+                </span>
+              </p>
+            </li><li>
+              <p class="left">
+                <span class="date">09<u>Nov</u></span>
+                <a href="85.html" target="_blank" class="thumb"><img src="static/picture/153G01615-0-lp.jpg" alt="SEO怎么做？搜索引擎排名的8大优化原则"></a>
+              </p>
+              <p class="right">
+                <span class="title"><a href="85.html" target="_blank">SEO怎么做？搜索引擎排名的8大优化原则</a></span>
+                <span class="rel">624天前<u>•</u>围观热度 8038<u>•</u><a href='index8.html'>经验之谈</a></span>
+                <span class="summary">2016年的页面SEO已不再是简单按部就班的按条款行事了，随着搜索引擎算法的不断改进和用户搜索习惯的变化，如今的页面SEO更复杂了，那么除了传统的页面元素外，页面SEO还应该注意哪 . . .</span>
+                <span class="tags">
+                	<span class="glyphicon glyphicon-tag"></span>
+                    <a href="tags8.html">SEO</a>&nbsp;<a href="tags9.html">搜索引擎</a>&nbsp; 
+                </span>
+              </p>
+            </li>
+        </ul>
+        <div id="Paging" class="paging">
+             <div class="qzPagination">
+                  <li class="thisclass">1</li>
+<li><a href='list_2_2.html'>2</a></li>
+<li><a href='list_2_3.html'>3</a></li>
+<li><a href='list_2_4.html'>4</a></li>
+<li><a href='list_2_5.html'>5</a></li>
+<li><a href='list_2_6.html'>6</a></li>
+<li><a href='list_2_7.html'>7</a></li>
+<li><a href='list_2_2.html'>下一页</a></li>
 
-{% include footer.html %}
+             </div>
+         </div>
+    </section>
+    
+    <div class="dock">
+        <ul class="icons">
+        	<li class="up"><i></i></li>
+            <li class="tel">
+            	<i></i><p>建站咨询热线<br>18653545153</p>
+            </li>
+            <li class="im">
+            	<i></i><p><a href="javascript:;" target="_blank">点我，建站咨询</a></p>
+            </li>
+        </ul>
+    </div> 
+<script src="https://cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"></script>
+<script src="/static/js/inner.min.js"></script>
+</body>
+</html>
