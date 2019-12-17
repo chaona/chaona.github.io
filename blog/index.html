@@ -6,7 +6,7 @@ keywords:
 description: 
 ---
 
-{% for post in site.posts %} 
+{% for post in paginator.posts %} 
 <hr>
 <article>
 	<h3><a href="{{ site.url }}{{ post.url }}">{{ post.title }}</a></h3>
