@@ -1,6 +1,16 @@
 <ul class="side-nav">
-	<li class="active"><a href="{{ site.url }}/">Home</a></li>
-	<li><a href="{{ site.url }}/html/">HTML</a></li>
-	<li><a href="{{ site.url }}/css/">CSS</a></li>
-	<li><a href="{{ site.url }}/javascript/">JavaScript</a></li>
+	<!-- <li class="active"><a href="{{ site.url }}/">Home</a></li> -->
+	{% for category in site.categories %}
+	<li><a href="{{ category | first }}">{{ category | first }} {{ category | last | size }}</a></li>
+	{% endfor %}
+	<!-- <li><a href="{{ site.url }}/css/">CSS</a></li>
+	<li><a href="{{ site.url }}/javascript/">JavaScript</a></li> -->
 </ul>
+
+
+<!-- //这里使用了 Jekyll 语法，会被编译，所以加多个"\"
+4    {\% for category in site.categories %\}
+5    <li><a href="/categories/{\{ category | first }\}/" title="view all
+6posts">{\{ category | first }\} {\{ category | last | size }\}</a>
+7    </li>
+8    {\% endfor %\} -->
