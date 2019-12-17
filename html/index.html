@@ -6,17 +6,12 @@ keywords:
 description: 
 category: html
 ---
-<p>111</p>
+
 {% for post in site.categories.[page.category] %}
-<div class="post-preview">
-    <a href="{{ site.baseurl }}{{ post.url | remove_first: '/'}}">
-        <h2 class="post-title">            
-            {{ post.title }}
-        </h2>
-    </a>
-    <p class="post-meta">
-      {{ post.date | date: "%B %-d, %Y" }}
-    </p>
-</div>
 <hr>
+<article>
+	<h3><a href="{{ site.url }}{{ post.url }}">{{ post.title }}</a></h3>
+	<p>{{ post.excerpt }}</p>
+	<h6>{{ post.date | date: "%Y-%m-%d" }}</h6>
+</article>
 {% endfor %}
