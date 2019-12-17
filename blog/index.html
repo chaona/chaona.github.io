@@ -1,0 +1,15 @@
+---
+layout: list
+title: 文章
+keywords: 
+description: 
+---
+
+{% for post in site.posts %} 
+<hr>
+<article>
+	<h3><a href="{{ site.url }}{{ post.url }}">{{ post.title }}</a></h3>
+	<p>{{ post.excerpt }}</p>
+	<h6>{{ post.date | date: "%Y-%m-%d" }}</h6>
+</article>
+{% endfor %}

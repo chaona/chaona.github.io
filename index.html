@@ -1,0 +1,21 @@
+---
+layout: default
+title: 首页
+keywords: 
+description: 
+
+city: 临汾
+---
+
+<!-- 对所有帖子进行一个遍历（输出内容使用两层大括号，单纯的命令使用一层大括号） -->
+
+<ul class="inline-list large-12 columns">
+	{% for post in site.posts %} 
+
+	<li class="large-6">
+		<span class="left">{{ post.date | date: "%Y-%m-%d" }}</span> 
+		<a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a>
+	</li>
+	{% endfor %}
+
+</ul>
