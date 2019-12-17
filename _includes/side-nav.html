@@ -3,7 +3,7 @@
 	<nav>
 		<ul class="side-nav">
 			<!-- <li class="active"><a href="{{ site.url }}/">Home</a></li> -->
-			<li><a href="{{ site.url }}/blog/">All blog</a></li>
+			<li><a href="{{ site.url }}/blog/">All blog</a> <span class="label success round">{{ post | last | size }}</span></li>
 			{% for category in site.categories %}
 			<li>
 				<a href="{{ site.url }}/{{ category | first }}/">
