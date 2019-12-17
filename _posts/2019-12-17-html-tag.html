@@ -6,21 +6,7 @@ description: ""
 date: 2019-12-17
 category: html
 ---
-<style type="text/css">
-	code,
-        pre,
-        pre tt {
-            font-family: Courier, Courier New, monospace
-        }
 
-        pre {
-            background: hsla(0, 0%, 97%, .7);
-            border: 1px solid #ddd;
-            padding: 1em 1.5em;
-            display: block;
-            -webkit-overflow-scrolling: touch
-        }
-</style>
 <p>在HTML的部分，我们会按照功能和语言来划分它的知识，HTML的功能主要由标签来承担，所以我们首先会把标签做一些分类，并对它们分别进行讲解。</p>
 <p>我们都知道HTML的标签可以分为很多种，head里面的我们称为元信息类标签，诸如title、meta、style、link、base这些，它们用来描述文档的一些基本信息。</p>
 <p>还有一类是一些诸如section、nav的标签，它们在视觉表现上跟div并没有区别，但是各有各的适用场景，我们把它们称作语义类标签。</p>
@@ -53,7 +39,7 @@ category: html
 </ul>
 <p>不过，不恰当地使用语义标签，反而会造成负面作用。这里我们举一个常见的误区作为例子。我们都知道ul是无序列表，ol是有序列表，所以很多接触过语义这个概念，半懂不懂的前端工程师，特别喜欢给所有并列关系的元素都套上ul。</p>
 <p>实际上， ul 是长成下面的这种样子的(以下来自HTML标准)。</p>
-<pre>
+
 	<code>
 		<p>I have lived in the following countries:</p>
 		<ul>
@@ -63,7 +49,7 @@ category: html
 			<li>United States</li>
 		</ul>
 	</code>
-</pre>
+
 <p>ul多数出现正在行文中间，它的上文多数在提示：要列举某些项。但是，如果所有并列关系都用ul，会造成大量冗余标签。</p>
 <p>错误地使用语义标签，会给机器阅读造成混淆、增加嵌套，给CSS编写加重负担。</p>
 <p>所以，对于语义标签，<strong>我的态度是：“用对”比“不用”好，“不用”比“用错”好。当然了，我觉得有理想的前端工程师还是应该去追求“用对”它们。</strong></p>
