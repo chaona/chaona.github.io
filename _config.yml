@@ -5,6 +5,8 @@ permalink: /:categories/:title.html
 
 gems:
   - jekyll-sitemap
+  
+gems: [jekyll-paginate]
 
 # 分页
 paginate: 5
