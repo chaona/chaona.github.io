@@ -57,14 +57,12 @@ category: javascript
 <p>另外，值得注意的是，JavaScript中有 +0 和 -0，在加法类运算中它们没有区别，但是除法的场合则需要特别留意区分，“忘记检测除以-0，而得到负无穷大”的情况经常会导致错误，而区分 +0 和 -0 的方式，正是检测 1/x 是 Infinity 还是 -Infinity。</p>
 <p>根据双精度浮点数的定义，Number类型中有效的整数范围是-0x1fffffffffffff至0x1fffffffffffff，所以Number无法精确表示此范围外的整数。</p>
 <p>同样根据浮点数的定义，非整数的Number类型无法用 ==（===也不行） 来比较，一段著名的代码，这也正是我们第三题的问题，为什么在JavaScript中，0.1+0.2不能=0.3：</p>
-<pre>
-	<code>
-		console.log( 0.1 + 0.2 == 0.3);
+<pre><code>console.log( 0.1 + 0.2 == 0.3);
 	</code>
 </pre>
 <p>这里输出的结果是false，说明两边不相等的，这是浮点运算的特点，也是很多同学疑惑的来源，浮点数运算的精度问题导致等式左右的结果并不是严格相等，而是相差了个微小的值。</p><p>所以实际上，这里错误的不是结论，而是比较的方法，正确的比较方法是使用JavaScript提供的最小精度值：</p>
 
-<pre><code>  console.log( Math.abs(0.1 + 0.2 - 0.3) &lt;= Number.EPSILON);
+<pre><code>console.log( Math.abs(0.1 + 0.2 - 0.3) &lt;= Number.EPSILON);
 </code></pre>
 <p>检查等式左右两边差的绝对值是否小于最小精度，才是正确的比较浮点数的方法。这段代码结果就是 true 了。</p>
 
@@ -73,12 +71,12 @@ category: javascript
 <p>在后面的文章中，我会详细叙述 Symbol 跟对象系统。这里我们只介绍Symbol类型本身：它有哪些部分，它表示什么意思，以及如何创建Symbol类型。</p>
 <p>Symbol 可以具有字符串类型的描述，但是即使描述相同，Symbol也不相等。</p>
 <p>我们创建 Symbol 的方式是使用全局的 Symbol 函数。例如：</p>
-<pre><code>    var mySymbol = Symbol(&quot;my symbol&quot;);
+<pre><code>var mySymbol = Symbol(&quot;my symbol&quot;);
 </code></pre>
 
 <p>一些标准中提到的 Symbol，可以在全局的 Symbol 函数的属性中找到。例如，我们可以使用 Symbol.iterator 来自定义 for…of 在对象上的行为：</p>
 
-<pre><code>    var o = new Object
+<pre><code>var o = new Object
 
     o[Symbol.iterator] = function() {
         var v = 0
@@ -116,13 +114,11 @@ category: javascript
 <p>Number、String和Boolean，三个构造器是两用的，当跟 new 搭配时，它们产生对象，当直接调用时，它们表示强制类型转换。</p>
 <p>Symbol 函数比较特殊，直接用 new 调用它会抛出错误，但它仍然是 Symbol 对象的构造器。</p>
 <p>JavaScript 语言设计上试图模糊对象和基本类型之间的关系，我们日常代码可以把对象的方法在基本类型上使用，比如：</p>
-<pre><code>    console.log(&quot;abc&quot;.charAt(0)); //a
-</code></pre>
+<pre><code>console.log(&quot;abc&quot;.charAt(0)); //a</code></pre>
 <p>甚至我们在原型上添加方法，都可以应用于基本类型，比如以下代码，在 Symbol 原型上添加了hello方法，在任何 Symbol 类型变量都可以调用。</p>
-<pre><code>    Symbol.prototype.hello = () =&gt; console.log(&quot;hello&quot;);
+<pre><code>Symbol.prototype.hello = () =&gt; console.log(&quot;hello&quot;);
 
     var a = Symbol(&quot;a&quot;);
     console.log(typeof a); //symbol，a并非对象
-    a.hello(); //hello，有效
-</code></pre>
+    a.hello(); //hello，有效</code></pre>
 <p>所以我们文章开头的问题，答案就是<code>.</code> 运算符提供了装箱操作，它会根据基础类型构造一个临时对象，使得我们能在基础类型上调用对应对象的方法。</p>
