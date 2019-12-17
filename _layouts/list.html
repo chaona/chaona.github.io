@@ -17,16 +17,16 @@
 	<!-- 侧边栏 -->
 	{% include side-nav.html %}
 	
-	<hr>
+	<hr style="padding-top: 20px;">
 	{% if paginator.total_pages > 1 %}
 	<div class="pagination-centered">
 	  	<ul class="pagination">
 	<!-- 分页代码 -->
 		{% if paginator.previous_page %}
-		    <li><a href="{{ paginator.previous_page_path | prepend: site.baseurl | replace: '//', '/' }}">上一页</a></li>
+		    <li><a href="{{ paginator.previous_page_path | prepend: site.url | replace: '//', '/' }}">上一页</a></li>
 		{% endif %}
 		{% if paginator.next_page %}
-		    <li><a href="{{ paginator.next_page_path | prepend: site.baseurl | replace: '//', '/' }}">下一页</a></li>
+		    <li><a href="{{ paginator.next_page_path | prepend: site.url | replace: '//', '/' }}">下一页</a></li>
 		{% endif %}
 		</ul>
 	</div>
