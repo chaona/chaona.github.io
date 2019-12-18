@@ -255,10 +255,56 @@ category: html
 <h2>HTML其他常见标签</h2>
 
 <h3>abbr</h3>
-
 <p>abbr标签表示缩写。考虑到WWW是World Wide Web的缩写，所以文中所有出现的WWW，都应该使用abbr标签，</p>
 <pre><code class="language-html">&lt;abbr title="World Wide Web"&gt;WWW&lt;/abbr&gt;.
 </code></pre>
 
-<p>下一篇中，我们会继续深入到更细致的结构中，进一步了解语义。你在工作中是否在使用语义化的标签开发？学习过本篇之后，答案有没有变化呢？你可以给我留言，我们一起讨论。</p>
+<h3>hr</h3>
+<p>hr表示故事走向的转变或者话题的转变。</p>
+<p>如果只想展示视觉效果的hr，用CSS的border来实现。</p>
 
+<h3>p</h3>
+<p>普通的段落，我们用p标签来实现。</p>
+
+<h3>strong</h3>
+<p>表示这个词很重要，所以我们使用strong标签。</p>
+
+<h3>blockquote, q, cite</h3>
+<p>在HTML中，有三个跟引述相关的标签blockquote表示段落级引述内容，q表示行内的引述内容，cite表示引述的作品名。</p>
+<p>如果是直接引用的内容，那么，我们还应该加上blockquote或者q标签。</p>
+
+<h3>time</h3>
+<p>出现了日期，为了让机器阅读更加方便，可以加上time标签。</p>
+
+<h3>figure, figcaption</h3>
+<p>这种出现在文中的图片，不仅仅是一个img标签，它和下面的文字组成了一个figure的语法现象，figure也是我们的一种标签（用于表示与主文章相关的图像、照片等流内容）。</p>
+<pre><code>&lt;figure&gt;
+ &lt;img src="https://.....440px-NeXTcube_first_webserver.JPG"/&gt;
+ &lt;figcaption&gt;The NeXT Computer used by Tim Berners-Lee at CERN.&lt;/figcaption&gt;
+&lt;/figure&gt;
+</code></pre>
+<p>这种插入文章中的内容，不仅限图片，代码、表格等，只要是具有一定自包含性（类似独立句子）的内容，都可以用figure。这里面，我们用figcaption表示内容的标题，当然，也可以没有标题。</p>
+
+<h3>dfn</h3>
+<pre><code>
+The terms Internet and World Wide Web are often used without much distinction. However, the two are not the same. 
+The &lt;dfn&gt;Internet&lt;/dfn&gt; is a global system of interconnected computer networks.
+In contrast, the &lt;dfn&gt;World Wide Web&lt;/dfn&gt; is a global collection of documents and other resources, linked by hyperlinks and URIs. 
+
+</code></pre>
+<p>代码中你可以看见，你需要在你要定义的词前后放上dfn标签，所以我们知道了，dfn标签是用来包裹被定义的名词。</p>
+
+<h3>nav, ol, ul</h3>
+<p>文章的目录，这里的目录链接到文章的各个章节，我们可以使用nav标签。</p>
+<p>我们这里必须要指出，ol和ul的区分是内容是否有顺序关系，每一项的前面不论是数字还是点，都不会影响语义的判断。所以，你可以注意一下这里，不要因为视觉表现效果，而改变语义的使用。</p>
+
+<h2>总结</h2>
+
+<p>在这一篇Wiki文章中，已经涉及了大部分语义标签，可见HTML工作组对语义标签的增加是非常谨慎和保守的。</p>
+<p>当然了，我们选择的案例不可能刚巧覆盖所有的标签，还有些没讲到的标签，我们这里稍微做一下简要的补充说明。</p>
+
+<p><img src="https://img.alicdn.com/imgextra/i2/2465811727/O1CN0156eCdb1Od0a4Mf4ow_!!2465811727.jpg" alt="HTML标签及其说明"></p>
+
+<p>实际上，HTML这种语言，并不像严谨的编程语言一样，有一条非此即彼的线。一些语义的使用其实会带来争议，所以我的建议是：你可以尽量只用自己熟悉的语义标签，并且只在有把握的场景引入语义标签。这样，我们才能保证语义标签不被滥用，造成更多的问题。</p>
+
+<p>你最擅长使用哪些语义标签，会把它们用在哪些场景里呢？欢迎留言告诉我，我们一起讨论。</p>
