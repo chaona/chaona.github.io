@@ -23,7 +23,7 @@
 		<!-- 分页代码 -->
 		{% if paginator.previous_page %}
 		    <li class="text-left">
-		    	<a class="button info round small" href="{{ paginator.previous_page_path }}">上一页</a>
+		    	<a class="button info round small" href="{{ site:url }}{{ paginator.previous_page_path }}">上一页</a>
 		    </li>
 		{% else %}
 			<li class="text-left">
@@ -32,7 +32,7 @@
 		{% endif %}
 		{% if paginator.next_page %}
 		    <li class="text-right">
-		    	<a class="button info round small" href="{{ paginator.next_page_path }}">下一页</a>
+		    	<a class="button info round small" href="{{ site:url }}{{ paginator.next_page_path }}">下一页</a>
 		    </li>
 		{% else %}
 		    <li class="text-right">
