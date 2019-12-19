@@ -3,11 +3,11 @@
 	<nav>
 		<ul class="side-nav">
 			<!-- <li class="active"><a href="{{ site.url }}/">Home</a></li> -->
-			<li><a href="{{ site.url }}/blog/">All Blog <span class="label warning round">{{ site.posts.size }}</span></a></li>
+			<li><a href="{{ site.url }}/blog/">All Blog <span class="label round">{{ site.posts.size }}</span></a></li>
 			{% for category in site.categories %}
 			<li>
 				<a href="{{ site.url }}/{{ category | first }}/">
-					{{ category | first }} <span class="label warning round">{{ category | last | size }}</span>
+					{{ category | first }} <span class="label round">{{ category | last | size }}</span>
 				</a>
 			</li>
 			{% endfor %}
