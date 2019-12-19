@@ -3,7 +3,7 @@
 	<nav>
 		<ul class="side-nav" id="aside-nav" data-id="{{ page.category }}">
 			<!-- <li class="active"><a href="{{ site.url }}/">Home</a></li> -->
-			<li><a href="{{ site.url }}/blog/">All Blog <span class="label round">{{ site.posts.size }}</span></a></li>
+			<li id="cat_blog"><a href="{{ site.url }}/blog/">All Blog <span class="label round">{{ site.posts.size }}</span></a></li>
 			{% for category in site.categories %}
 			<li id="cat_{{ category | first }}">
 				<a href="{{ site.url }}/{{ category | first }}/">
@@ -14,7 +14,12 @@
 		</ul>
 	</nav>
 </aside>
-<script type="text/javascript"> 
-	var cat_id=document.getElementById("aside-nav").getAttribute("data-id");
-	document.getElementById("cat_" + cat_id).setAttribute("class","active");
+<script type="text/javascript">
+	// 侧边栏导航选中
+	var cat_id = document.getElementById("aside-nav").getAttribute("data-id");
+	if(cat_id) {
+		document.getElementById("cat_" + cat_id).setAttribute("class", "active");
+	}else{
+		document.getElementById("cat_blog").setAttribute("class", "active");
+	}
 </script>
