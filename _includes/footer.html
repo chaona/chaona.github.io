@@ -30,8 +30,8 @@
 	        console.log(elbody);
 	        console.log(pagename);
 	        $.each(elbody, function(i, item) {
-                if (pagename === $(item).attr("href")) {
                 	console.log($(item));
+                if (pagename === $(item).attr("href")) {
                     $(item).parent().siblings().removeClass("active");
                     $(item).parent().addClass("active");
                     return false;
