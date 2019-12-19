@@ -21,20 +21,20 @@
 	<div class="large-12 columns">
 		<!-- 分页代码 -->
 		{% if paginator.previous_page %}
-		    <div class="small-6 columns text-left">
+		    <div class="small-6 columns text-center">
 		    	<a class="button info round small" href="{{ site:url }}{{ paginator.previous_page_path }}">上一页</a>
 		    </div>
 		{% else %}
-			<div class="small-6 columns text-left">
+			<div class="small-6 columns text-center">
 				<a class="button secondary round disabled small" href="javascript:;">上一页</a>
 			</div>   
 		{% endif %}
 		{% if paginator.next_page %}
-		    <div class="small-6 columns text-right">
+		    <div class="small-6 columns text-center">
 		    	<a class="button info round small" href="{{ site:url }}{{ paginator.next_page_path }}">下一页</a>
 		    </div>
 		{% else %}
-		    <div class="small-6 columns text-right">
+		    <div class="small-6 columns text-center">
 		    	<a class="button secondary round disabled small" href="javascript:;">下一页</a>
 		    </div> 
 		{% endif %}
