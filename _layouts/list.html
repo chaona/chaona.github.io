@@ -23,29 +23,21 @@
 	<!-- 分页代码 -->
 		{% if paginator.previous_page %}
 		    <li>
-		    	<a class="button info round large" href="{{ paginator.previous_page_path | prepend: site.url | replace: '//', '/' }}">上一页</a>
+		    	<a class="button info round small left" href="{{ paginator.previous_page_path | prepend: site.url | replace: '//', '/' }}">上一页</a>
 		    </li>
 		{% else %}
-			<li><a class="button secondary round disabled large" href="#">上一页</a></li>   
+			<li><a class="button secondary round disabled small left" href="javascript:;">上一页</a></li>   
 		{% endif %}
 		{% if paginator.next_page %}
 		    <li>
-		    	<a class="button info round large" href="{{ paginator.next_page_path | prepend: site.url | replace: '//', '/' }}">下一页</a>
+		    	<a class="button info round small right" href="{{ paginator.next_page_path | prepend: site.url | replace: '//', '/' }}">下一页</a>
 		    </li>
 		{% else %}
-		    <li><a class="button secondary round disabled large" href="#">下一页</a></li> 
+		    <li><a class="button secondary round disabled small right" href="javascript:;">下一页</a></li> 
 		{% endif %}
 		</ul>
 	</div>
 	{% endif %}
-  	
-<!-- 	    <li class="arrow"><a href="#">«</a></li>
-	    <li class="current"><a href="#">1</a></li>
-	    <li><a href="#">2</a></li>
-	    <li><a href="#">3</a></li>
-	    <li><a href="#">4</a></li>
-	    <li><a href="#">5</a></li>
-	    <li class="arrow"><a href="#">»</a></li> -->
 	  
 </section>
 <!-- 主体 end -->
