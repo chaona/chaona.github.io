@@ -1,7 +1,7 @@
 <aside class="large-4 columns" style="padding-top: 30px;">
 	<h3>Category</h3>
 	<nav>
-		<ul class="side-nav" data-id="{{ page.category }}">
+		<ul class="side-nav" id="aside-nav" data-id="{{ page.category }}">
 			<!-- <li class="active"><a href="{{ site.url }}/">Home</a></li> -->
 			<li><a href="{{ site.url }}/blog/">All Blog <span class="label round">{{ site.posts.size }}</span></a></li>
 			{% for category in site.categories %}
@@ -14,9 +14,7 @@
 		</ul>
 	</nav>
 </aside>
-<script type="text/javascript">  
-$(function() {
-	var cat_id=$("side-nav").dataset.id;
-	$("#cat_"+cat_id).addClass("active");
-});
+<script type="text/javascript"> 
+	var cat_id=document.getElementById("aside-nav").getAttribute("data-id");
+	document.getElementById("cat_" + cat_id).setAttribute("class","active");
 </script>
