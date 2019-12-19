@@ -14,7 +14,7 @@ category: browser
 	<p>In <a href="{{ site.url }}/{{ page.category }}/">{{ page.category }}</a> 
 		on <time>{{ post.date | date: "%Y-%m-%d" }}</time>
 	</p>
-	<p><a href="{{ site.url }}{{ post.url }}">继续阅读 <i class="fi-fast-forward"></i></a></p>
-	<span></span>
+	<p>{{ post.excerpt }}</p>
+	<span><a href="{{ site.url }}{{ post.url }}">继续阅读 <i class="fi-fast-forward"></i></a></span>
 </article>
 {% endfor %}
