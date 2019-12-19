@@ -11,7 +11,10 @@ category: browser
 <hr>
 <article>
 	<h3><a href="{{ site.url }}{{ post.url }}">{{ post.title }}</a></h3>
-	<p>{{ post.excerpt }}</p>
-	<time>{{ post.date | date: "%Y-%m-%d" }}</time>
+	<p>In <a href="{{ site.url }}/{{ page.category }}/">{{ page.category }}</a> 
+		on <time>{{ post.date | date: "%Y-%m-%d" }}</time>
+	</p>
+	<p><a href="{{ site.url }}{{ post.url }}">继续阅读 <i class="fi-fast-forward"></i></a></p>
+	<span></span>
 </article>
 {% endfor %}
