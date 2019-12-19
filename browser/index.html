@@ -6,15 +6,3 @@ keywords: "浏览器,API"
 description: "浏览器的实现原理。工作中用到几个大块的API：事件、DOM、CSSOM几个部分，它们分别覆盖了交互、语义和可见效果。"
 category: browser
 ---
-
-{% for post in site.categories.[page.category] %}
-<hr>
-<article>
-	<h3><a href="{{ site.url }}{{ post.url }}">{{ post.title }}</a></h3>
-	<p>In <a href="{{ site.url }}/{{ page.category }}/">{{ page.category }}</a> 
-		on <time>{{ post.date | date: "%Y-%m-%d" }}</time>
-	</p>
-	<p>{{ post.excerpt }}</p>
-	<span><a href="{{ site.url }}{{ post.url }}">继续阅读 <i class="fi-fast-forward"></i></a></span>
-</article>
-{% endfor %}

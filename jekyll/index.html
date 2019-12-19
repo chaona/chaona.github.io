@@ -6,12 +6,3 @@ keywords:
 description: 
 category: jekyll
 ---
-
-{% for post in site.categories.[page.category] %}
-<hr>
-<article>
-	<h3><a href="{{ site.url }}{{ post.url }}">{{ post.title }}</a></h3>
-	<p>{{ post.excerpt }}</p>
-	<time>{{ post.date | date: "%Y-%m-%d" }}</time>
-</article>
-{% endfor %}
