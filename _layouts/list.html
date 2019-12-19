@@ -23,17 +23,17 @@
 	<!-- 分页代码 -->
 		{% if paginator.previous_page %}
 		    <li>
-		    	<a class="button info round" href="{{ paginator.previous_page_path | prepend: site.url | replace: '//', '/' }}">上一页</a>
+		    	<a class="button info round large" href="{{ paginator.previous_page_path | prepend: site.url | replace: '//', '/' }}">上一页</a>
 		    </li>
 		{% else %}
-			<li><a class="button secondary round">上一页</a></li>   
+			<li><a class="button secondary round disabled large" href="#">上一页</a></li>   
 		{% endif %}
 		{% if paginator.next_page %}
 		    <li>
-		    	<a class="button info round" href="{{ paginator.next_page_path | prepend: site.url | replace: '//', '/' }}">下一页</a>
+		    	<a class="button info round large" href="{{ paginator.next_page_path | prepend: site.url | replace: '//', '/' }}">下一页</a>
 		    </li>
 		{% else %}
-		    <li><a class="button secondary round">下一页</a></li> 
+		    <li><a class="button secondary round disabled large" href="#">下一页</a></li> 
 		{% endif %}
 		</ul>
 	</div>
