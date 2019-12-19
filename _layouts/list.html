@@ -22,10 +22,18 @@
 	  	<ul class="pagination">
 	<!-- 分页代码 -->
 		{% if paginator.previous_page %}
-		    <li><a href="{{ paginator.previous_page_path | prepend: site.url | replace: '//', '/' }}">上一页</a></li>
+		    <li>
+		    	<a class="button info" href="{{ paginator.previous_page_path | prepend: site.url | replace: '//', '/' }}">上一页</a>
+		    </li>
+		{% else %}
+			<li><button class="button info">上一页</button></li>   
 		{% endif %}
 		{% if paginator.next_page %}
-		    <li><a href="{{ paginator.next_page_path | prepend: site.url | replace: '//', '/' }}">下一页</a></li>
+		    <li>
+		    	<a class="button info" href="{{ paginator.next_page_path | prepend: site.url | replace: '//', '/' }}">下一页</a>
+		    </li>
+		{% else %}
+		    <li><button class="button info">下一页</button></li> 
 		{% endif %}
 		</ul>
 	</div>
