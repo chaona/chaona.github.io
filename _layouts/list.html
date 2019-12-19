@@ -18,28 +18,26 @@
 	{% include side-nav.html %}
 	
 	{% if paginator.total_pages > 1 %}
-	<div class="pagination-centered">
-	  	<ul class="pagination">
+	<div class="large-12 columns">
 		<!-- 分页代码 -->
 		{% if paginator.previous_page %}
-		    <li class="text-left">
+		    <div class="large-6 text-left">
 		    	<a class="button info round small" href="{{ site:url }}{{ paginator.previous_page_path }}">上一页</a>
-		    </li>
+		    </div>
 		{% else %}
-			<li class="text-left">
+			<div class="large-6 text-left">
 				<a class="button secondary round disabled small" href="javascript:;">上一页</a>
-			</li>   
+			</div>   
 		{% endif %}
 		{% if paginator.next_page %}
-		    <li class="text-right">
+		    <div class="large-6 text-right">
 		    	<a class="button info round small" href="{{ site:url }}{{ paginator.next_page_path }}">下一页</a>
-		    </li>
+		    </div>
 		{% else %}
-		    <li class="text-right">
+		    <div class="large-6 text-right">
 		    	<a class="button secondary round disabled small" href="javascript:;">下一页</a>
-		    </li> 
+		    </div> 
 		{% endif %}
-		</ul>
 	</div>
 	{% endif %}
 	  
