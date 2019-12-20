@@ -74,7 +74,7 @@ DOM 提供的 API，开发人员可以轻松自如地删除、添加、替换或
 致，可以将其当作一种最佳实践。</p>
 
 <h2>注释</h2>
-<p>ECMAScript 使用 C 风格的注释，包括单行注释和块级注释。</p>
+<p>ECMAScript 使用 C 风格的注释，包括单行注释和块级注释。实际工作中还会用到：文档注释</p>
 <h3>单行注释</h3>
 <p>双斜线后，必须跟一个空格；</p>
 <p>缩进与下一行代码保持一致；</p>
@@ -98,6 +98,28 @@ var bookName = 'JavaScript高级编程'; // 单行注释
 </ul>
 <pre><code>/*
  * one space after '*'
+ * 这是一个多行（块级）注释
  */
 var x = 1;	
+</code></pre>
+
+<h3>文档注释</h3>
+<p>各类标签@param，@method等。</p>
+<p>使用场景：</p>
+<ul class="circle">
+	<li>所有常量</li>
+	<li>所有函数</li>
+	<li>所有类</li>
+</ul>
+<pre><code>/**
+ * @func
+ * @desc 一个带参数的函数
+ * @param {string} a - 参数a
+ * @param {number} b=1 - 参数b默认值为1
+ * @param {string} [c] - 参数c是一个可选参数
+ */
+function foo(a, b, c) {
+	// code here
+	...
+}	
 </code></pre>
