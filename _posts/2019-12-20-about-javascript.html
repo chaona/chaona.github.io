@@ -70,3 +70,34 @@ DOM 提供的 API，开发人员可以轻松自如地删除、添加、替换或
 	<li>常量全大写，用下划线连接:<code>var MAX_COUNT = 100;</code></li>
 	<li>jQuery对象必须以'$'开头命名：<code>var $body = $('body');</code></li>
 </ul>
+<p>虽然没有谁强制要求必须采用这种格式，但为了与 ECMAScript 内置的函数和对象命名格式保持一
+致，可以将其当作一种最佳实践。</p>
+
+<h2>注释</h2>
+<p>ECMAScript 使用 C 风格的注释，包括单行注释和块级注释。</p>
+<h3>单行注释</h3>
+<p>双斜线后，必须跟一个空格；</p>
+<p>缩进与下一行代码保持一致；</p>
+<p>可位于一个代码行的末尾，与代码间隔一个空格。</p>
+<pre><code>if(condition) {
+	// 单行注释
+	allowed();
+}
+
+var bookName = 'JavaScript高级编程'; // 单行注释	
+</code></pre>
+
+<h3>多行注释（块级注释）</h3>
+<p>最好三行，'*'后跟一个空格。</p>
+<p>使用场景：</p>
+<ul class="circle">
+	<li>难以理解的代码段</li>
+	<li>可能存在错误的代码段</li>
+	<li>浏览器特殊的HACK代码</li>
+	<li>业务逻辑强相关的代码</li>
+</ul>
+<pre><code>/*
+ * one space after '*'
+ */
+var x = 1;	
+</code></pre>
