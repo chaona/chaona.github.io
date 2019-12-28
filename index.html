@@ -1,8 +1,8 @@
 ---
 layout: default
-title: 首页
-keywords: 
-description: 
+title: "超纳网络 - 临汾营销型网站建设公司_提升中小企业网络形象"
+keywords: "临汾网站建设,网站制作,小程序开发,网站建设公司"
+description: "山西超纳网络科技有限公司，专业从事企业网站建设、网络推广11年，专注企业营销型网站建设、响应式网站制作、微信企业小程序开发、微信商城小程序开发、百度智能小程序开发。"
 
 city: 临汾
 ---
@@ -11,9 +11,9 @@ city: 临汾
 <ul class="inline-list large-12 columns">
 	{% for post in site.posts %} 
 
-	<li class="large-6">
+	<li class="large-6 columns">
 		<span class="left">{{ post.date | date: "%Y-%m-%d" }}</span> 
-		<a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a>
+		<a href="{{ site.url }}{{ post.url }}">{{ post.title }}</a>
 	</li>
 	{% endfor %}
 
