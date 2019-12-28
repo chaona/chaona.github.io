@@ -8,10 +8,10 @@ city: 临汾
 ---
 
 <!-- blog -->
-<ul class="inline-list large-12 columns">
+<ul class="no-bullet large-12 columns">
 	{% for post in site.posts %} 
 
-	<li class="large-6 columns">
+	<li class="large-12 columns">
 		<span class="left">{{ post.date | date: "%Y-%m-%d" }}</span> 
 		<a href="{{ site.url }}{{ post.url }}">{{ post.title }}</a>
 	</li>
