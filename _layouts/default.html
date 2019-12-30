@@ -175,23 +175,25 @@
 	<div class="row price-table">
 		<div class="large-4 columns">
 			<ul class="pricing-table featured">
-			  <li class="title">雇员贷</li>
-			  <li class="description">{{ page.city }}户籍</li>
-			  <li class="price">最高可批复<span style="font-weight: bold;">15万</span></li>
-  			  <a class="price-table-toggle">+ 贷款申请要求</a>
+			  <li class="title">经济型建站</li>
+			  <li class="description">适合创业初期、小型企业、信息发布为主</li>
+			  <li class="price">经济实用型<span style="font-weight: bold;">3000</span></li>
+  			  <a class="price-table-toggle">+ 功能亮点</a>
   			  <ul class="price-table-features">
-				  <li class="bullet-item">提供工作证明</li>
-				  <li class="bullet-item">月均工资2500</li>
+				  <li class="bullet-item">具备基础通用功能</li>
+				  <li class="bullet-item">纯手工个性定制网站</li>
+				  <li class="bullet-item">满足中小企业需求</li>
+				  <li class="bullet-item">用途：网站新做、改版</li>
 			  </ul>
 			  <li class="cta-button"><a class="button secondary radius" href="#register">立即申请</a></li>
 			</ul>
 		</div>
 		<div class="large-4 columns">
 			<ul class="pricing-table featured">
-			  <li class="title">雇主贷</li>
-			  <li class="description">{{ page.city }}户籍</li>
+			  <li class="title">营销型建站</li>
+			  <li class="description">适合成长型企业、有营销推广需要</li>
 			  <li class="price">最高可批复<span style="font-weight: bold;">15万</span></li>
-  			  <a class="price-table-toggle">+ 贷款申请要求</a>
+  			  <a class="price-table-toggle">+ 功能亮点</a>
 			  <ul class="price-table-features">
 				  <li class="bullet-item">提供账户流水</li>
 				  <li class="bullet-item">营业执照满1年</li>
@@ -201,10 +203,10 @@
 		</div>
 		<div class="large-4 columns">
 			<ul class="pricing-table featured">
-			  <li class="title">业主贷</li>
+			  <li class="title">小程序开发</li>
 			  <li class="description">{{ page.city }}户籍</li>
 			  <li class="price">最高可批复<span style="font-weight: bold;">15万</span></li>
-			  <a class="price-table-toggle">+ 贷款申请要求</a>
+			  <a class="price-table-toggle">+ 功能亮点</a>
 			  <ul class="price-table-features">
 				  <li class="bullet-item">提供账户流水</li>
 				  <li class="bullet-item">个人房产证明</li>
@@ -249,7 +251,10 @@
 
 <footer class="section white">
 	<div class="row">
-		<div class="copyrights large-12 columns" >平台郑重承诺：所有贷款申请在未成功放款前绝不收取任何费用，为保障您的资金安全，请不要相信任何要求您支付费用的信息、邮件、电话等不实信息。	</div>
+		<div class="copyrights large-12 columns" >
+			山西超纳网络科技有限公司 <br>
+			Copyright &copy; 2019.chaona All rights reserved.
+		</div>
 		<div class="large-12 columns">
 			<ul class="inline-list">
 			  <li class="copyright">Copyright &copy; 2019.chaona All rights reserved.</li>
@@ -291,10 +296,10 @@
 			var thisparent = $(this).parents('.pricing-table');
 			$('.price-table-features', thisparent).fadeToggle('slow');
 			
-			if($(this).html()=='+ 贷款申请要求')
+			if($(this).html()=='+ 功能亮点')
 				$(this).html('- 隐藏');	
 			else {	
-				$(this).html('+ 贷款申请要求');	
+				$(this).html('+ 功能亮点');	
 			}
 		});
 		
