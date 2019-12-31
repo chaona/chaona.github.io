@@ -1,0 +1,89 @@
+---
+layout: post
+title:  "Head First Java"
+keywords: ""
+description: ""
+date: 2019-12-31
+category: java
+---
+
+<p>write-once/run-anywhere</p>
+<h2>Java 工作方式</h2>
+<p>写出一个应用程序且能够在任何设备上执行。</p>
+<ol>
+	<li>源代码</li>
+	<li>编译器</li>
+	<li>输出</li>
+	<li>JVM（Java虚拟机）</li>
+</ol>
+<p>1、编写源代码文件。</p>
+<p>2、用编译器运行源代码。编译器会检查错误，如果有错就要改正才能产生正确的输出。</p>
+<p>3、编译器会产出字节码。任何支持Java的装置都能够把它转译成可执行的内容。编译后的字节码与平台无关。</p>
+<p>4、Java虚拟机（JVM）可以读取与执行字节码。</p>
+
+<h2>Java的程序结构</h2>
+<ol>
+	<li>类 存于 源文件 里面</li>
+	<li>方法 存于 类 中</li>
+	<li>语句 存于 方法 中</li>
+</ol>
+<h3>什么事源文件？</h3>
+<p>源文件（扩展名为.java）带有类的定义。类用来表示程序的一个组件，小程序或许只会有一个类。类的内容必须抱在花括号里面。如： <code>Dog.java</code>	 </p>
+<pre><code>// 类
+public class Dog {
+    // 方法
+    void bark() {
+        // 语句
+        statement;      
+    }
+}</code></pre>
+
+<h3>什么是类？</h3>
+<p>类中带有一个或多个方法。在Dog这个类中，bark方法带有如何“汪汪”的指令。方法必须在类的内部声明。</p>
+
+<h3>什么是方法？</h3>
+<p>在方法的花括号中编写方法应该执行的指令。方法代码是由一组语句所组成，你可以把方法想象成是一个函数或过程。</p>
+
+<h2>Java的类</h2>
+<h3>剖析类</h3>
+<p>当Java虚拟机启动执行时，它会寻找你在命令列所指定的类。然后它会锁定像下面这样一个特定的方法：</p>
+<pre><code>public static void main(String[] args) {
+    // 代码块
+}
+</code></pre>
+<p>接着Java虚拟机就会执行main方法在花括号间的函数所有指令。每个Java程序最少都会有 <strong>一个类以及一个 <code>main()</code></strong> 。 <strong>每个应用程序只有一个 <code>main()</code> 函数</strong>。</p>
+<p><img src="https://img.alicdn.com/imgextra/i2/2465811727/O1CN01reRkC91Od0aPp9VOW_!!2465811727.jpg" alt="剖析Java的类"></p>
+
+<h2>编写带有 <code>main()</code> 的类</h2>
+<p>在Java中的所有东西都会属于某个类。建立源文件（.java），然后将它编译成新的类文件（.class）。真正被执行的是类。</p>
+<p>要执行程序就代表要命令Java虚拟机去“加载MyFirstApp这个类，开始执行它的main()，然后一直运行到main的所有程序代码结束为止”。</p>
+<p>main()就是程序的起点。</p>
+<p>不管程序有多大（也可以说不管有多少个类），一定会有一个main()来作为程序的起点。</p>
+<p><img src="https://img.alicdn.com/imgextra/i2/2465811727/O1CN019yi7wO1Od0aPpp3uW_!!2465811727.jpg" alt="Java执行过程"></p>
+
+<h2>啤酒童谣简单Java小程序 BeerSong（数啤酒瓶）</h2>
+<pre><code>public class BeerSong {
+  public static void main(String[] args) {
+    int beerNum = 99; // 啤酒数量
+    String word = "bottles"; // 瓶子（复数）
+
+    while(beerNum > 0){
+      if(beerNum == 1){
+        word = "bottle"; // 瓶子（单数）
+      }
+
+      System.out.println(beerNum + " " + word + " of beer on the wall");
+      System.out.println(beerNum + " " + word + " of beer.");
+      System.out.println("Take one down.");
+      System.out.println("Pass it around.");
+      beerNum = beerNum - 1; // 干了一瓶
+
+      if(beerNum > 0){
+        System.out.println(beerNum + " " + word + " of beer on the wall");
+      } else {
+        System.out.println("No more bottles of beer on the wall");
+      } // else end
+    } // while end
+  } // main end
+} // class end
+</code></pre>
