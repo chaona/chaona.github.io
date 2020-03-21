@@ -707,7 +707,8 @@ footer a.icon:hover {
 	background-color: #019141 !important;
 }
 .green .button:hover {
-	background-color: #72ab00 !important;	
+	/*background-color: #72ab00 !important;	*/
+	background-color: #35A761 !important;	
 }
 .green .feature .icon {
 	border-color: #019141 !important;
