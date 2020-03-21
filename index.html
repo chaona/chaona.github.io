@@ -9,7 +9,7 @@ city: 临汾
 
 <!-- blog -->
 <ul class="no-bullet large-12 columns">
-	{% for post in site.posts %} 
+	{% for post in site.posts | size:'10' %} 
 
 	<li class="large-6 columns">
 		<span class="left">{{ post.date | date: "%Y-%m-%d" }}</span> 

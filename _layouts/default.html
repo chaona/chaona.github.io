@@ -227,7 +227,7 @@
 	</div>
 </footer>		
 		
-	<div class="styleswitcher">
+	<div class="styleswitcher" style="display:none;">
 		<h3>主题设置</h3>
 		<p>你不喜欢这个主题颜色吗？没关系，换个颜色试试！</p>
 		<h4>选择颜色</h4>
@@ -266,15 +266,18 @@
 		});
 		
 		/* Styleswitcher */
+		// 默认选择绿色
+		var color = $('.green').attr('id');
+		$('body').removeClass().addClass(color);
+
+		// $('.collapse').click(function () {
+		// 	$('.styleswitcher').toggleClass('active'); 
+		// });
 		
-		$('.collapse').click(function () {
-			$('.styleswitcher').toggleClass('active'); 
-		});
-		
-		$('.switch-color').click(function () {
-			var color = $(this).attr('id');
-			$('body').removeClass().addClass(color);
-		});
+		// $('.switch-color').click(function () {
+		// 	var color = $(this).attr('id');
+		// 	$('body').removeClass().addClass(color);
+		// });
 			
 	});
     $(document).foundation();
