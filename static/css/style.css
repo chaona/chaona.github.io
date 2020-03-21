@@ -688,6 +688,7 @@ footer a.icon:hover {
 
 /* #00DFB9 */
 /*#7ab800*/
+/*#019141*/
 .green a,
 .green h2,
 .green .hint h3,
@@ -697,25 +698,25 @@ footer a.icon:hover {
 .green .pricing-table.featured .title,
 .green footer a.icon:hover,
 .green .quote .author {
-	color: #00DFB9 !important;
+	color: #019141 !important;
 }
 .green .quotes .orbit-bullets li.active,
 .green header,
 .green .top-bar-section ul li>a.button,
 .green .button {
-	background-color: #00DFB9 !important;
+	background-color: #019141 !important;
 }
 .green .button:hover {
 	background-color: #72ab00 !important;	
 }
 .green .feature .icon {
-	border-color: #00DFB9 !important;
+	border-color: #019141 !important;
 }
 .green .button {
 	border-color: #6a9f00 !important;
 }
 .green .top-bar-section li.active {
-	border-bottom: 4px solid #00DFB9;
+	border-bottom: 4px solid #019141;
 }
 
 
