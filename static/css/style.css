@@ -711,6 +711,9 @@ footer a.icon:hover {
 .green .button {
 	border-color: #6a9f00 !important;
 }
+.green .top-bar-section li.active {
+	border-bottom: 2px solid #7ab800;
+}
 
 
 
