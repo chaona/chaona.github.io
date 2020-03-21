@@ -712,7 +712,7 @@ footer a.icon:hover {
 	border-color: #6a9f00 !important;
 }
 .green .top-bar-section li.active {
-	border-bottom: 2px solid #7ab800;
+	border-bottom: 4px solid #7ab800;
 }
 
 
@@ -743,6 +743,10 @@ footer a.icon:hover {
 .lime .button {
 	border-color: #b8b826 !important;
 }
+.lime .top-bar-section li.active {
+	border-bottom: 4px solid #cccc33;
+}
+
 
 
 .olive a,
@@ -770,6 +774,9 @@ footer a.icon:hover {
 }
 .olive .button {
 	border-color: #788c0a !important;
+}
+.olive .top-bar-section li.active {
+	border-bottom: 4px solid #8FA411;
 }
 
 
@@ -800,6 +807,9 @@ footer a.icon:hover {
 .cyan .button {
 	border-color: #44b6b6 !important;
 }
+.cyan .top-bar-section li.active {
+	border-bottom: 4px solid #66cccc;
+}
 
 
 .blue a,
@@ -827,6 +837,9 @@ footer a.icon:hover {
 }
 .blue .button {
 	border-color: #1895d0 !important;
+}
+.blue .top-bar-section li.active {
+	border-bottom: 4px solid #21aded;
 }
 
 
@@ -856,6 +869,9 @@ footer a.icon:hover {
 .red .button {
 	border-color: #c85a3c !important;
 }
+.red .top-bar-section li.active {
+	border-bottom: 4px solid #E97c5f;
+}
 
 
 .winered a,
@@ -883,6 +899,9 @@ footer a.icon:hover {
 } 
 .winered .button {
 	border-color: #790000 !important;
+}
+.winered .top-bar-section li.active {
+	border-bottom: 4px solid #990000;
 }
 
 
@@ -912,6 +931,9 @@ footer a.icon:hover {
 .pink .button {
 	border-color: #cd2e6b !important;
 }
+.pink .top-bar-section li.active {
+	border-bottom: 4px solid #ea4c88;
+}
 
 
 .purple a,
@@ -939,6 +961,9 @@ footer a.icon:hover {
 }
 .purple .button {
 	border-color: #871c87 !important;
+}
+.purple .top-bar-section li.active {
+	border-bottom: 4px solid #993399;
 }
  
 
@@ -968,6 +993,9 @@ footer a.icon:hover {
 .brown .button {
 	border-color: #492400 !important;
 } 
+.brown .top-bar-section li.active {
+	border-bottom: 4px solid #663300;
+}
 
 
 .black a,
@@ -996,6 +1024,10 @@ footer a.icon:hover {
 .black .button {
 	border-color: black !important;
 }
+.black .top-bar-section li.active {
+	border-bottom: 4px solid black;
+}
+
 
 @media (min-width: 768px) and (max-width: 1023px) {
 	header h1 {
