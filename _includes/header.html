@@ -36,8 +36,15 @@
 
     <section class="top-bar-section">
       <ul class="right">
-        <li class="active"><a href="{{ site.url }}/">Home</a></li>
+        <li id="nav_home"><a href="{{ site.url }}/">Home</a></li>
 
+        {% for category in site.categories %}
+        <li id="nav_{{ category | first }}">
+          <a href="{{ site.url }}/{{ category | first }}/">
+            {{ category | first }}
+          </a>
+        </li>
+        {% endfor %}
         <li><a href="{{ site.url }}/html/">HTML</a></li>
         <li><a href="{{ site.url }}/css/">CSS</a></li>
         <li><a href="{{ site.url }}/javascript/">JavaScript</a></li>
@@ -47,6 +54,6 @@
   </nav>
 </header>
 <script>
-    $('#left_{{ page.category }}').addClass('active');
+    $('#nav_{{ page.category }}').addClass('active');
 </script>
 <!-- 主导航 end -->
