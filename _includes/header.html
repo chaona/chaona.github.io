@@ -18,7 +18,7 @@
   .article-body h2 {font-size: 1.8em;}
   .article-body h3 {font-size: 1.5em;}
   .article-body h4 {font-size: 1.2em;}
-  .article-body p {  width: 100%; height: auto; word-wrap:break-word;word-break:break-all; overflow: hidden;  }
+  .article-body p {width: 100%; height: auto; word-wrap: break-word; word-break: break-all; overflow: hidden;}
 </style>
 </style>
 </head>
@@ -36,15 +36,7 @@
 
     <section class="top-bar-section">
       <ul class="right">
-        <li id="nav_home"><a href="{{ site.url }}/">Home</a></li>
-
-        {% for category in site.categories %}
-        <li id="nav_{{ category | first }}">
-          <a href="{{ site.url }}/{{ category | first }}/">
-            {{ category | first }}
-          </a>
-        </li>
-        {% endfor %}
+        <li class="active"><a href="{{ site.url }}/">Home</a></li>
         <li><a href="{{ site.url }}/html/">HTML</a></li>
         <li><a href="{{ site.url }}/css/">CSS</a></li>
         <li><a href="{{ site.url }}/javascript/">JavaScript</a></li>
@@ -53,7 +45,4 @@
     </section>
   </nav>
 </header>
-<script>
-    $('#nav_{{ page.category }}').addClass('active');
-</script>
 <!-- 主导航 end -->
