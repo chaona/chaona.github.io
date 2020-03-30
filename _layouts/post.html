@@ -23,16 +23,16 @@
 		  	{{ content }}
 		</article>
 
-		 <ul class="no-bullet" style="padding-top: 30px;">
+		<ul class="no-bullet" style="padding-top: 30px;">
 			<li class="large-6 columns">
-				上一篇：{{ if page.previous }}
+				上一篇：{% if page.previous %}
 				<a href="{{ page.previous.url }}">{{ page.previous.title | truncatewords:5 }}</a>
-				{{ endif }}
+				{% endif %}
 			</li>
 			<li class="large-6 columns">
-				下一篇：{{ if page.next }}
+				下一篇：{% if page.next %}
 				<a href="{{ page.next.url }}">{{ page.next.title | truncatewords:5 }}</a>
-				{{ endif }}
+				{% endif %}
 			</li>
 		</ul>
 	</div>
