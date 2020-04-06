@@ -11,3 +11,5 @@ paginate: 15
 paginate_path: "blog/page:num"
 
 subtitle: "ChaoNa.net"
+
+highlighter: rouge
