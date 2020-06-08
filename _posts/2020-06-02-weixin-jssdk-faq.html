@@ -9,16 +9,10 @@ category: jssdk
 
 <p>h5调用微信的扫一扫功能，可以指定扫二维码还是一维码，默认二者都有。</p>
 <p>第一步：引入jssdk库</p>
-<pre><code><script src="https://res.wx.qq.com/open/js/jweixin-1.6.0.js"></script></code></pre>
+<pre><code>https://res.wx.qq.com/open/js/jweixin-1.6.0.js</code></pre>
 
 <p>第二步：html代码</p>
-<pre><code><div class="form-group" style="margin: 0 auto;">
-	<div class="col-xs-10">
-		<input disabled="disabled" type="text" id="cardInput" class="form-control" placeholder="扫一扫读者证背面条形码">
-	</div>
-	<label for="cardInput" class="btn btn-info col-xs-2 " id="scanQRCode">扫码</label>
-</div>	
-</code></pre>
+<pre><code>id="scanQRCode"</code></pre>
 
 <p>第三步：js核心代码</p>
 <pre><code>wx.config({
