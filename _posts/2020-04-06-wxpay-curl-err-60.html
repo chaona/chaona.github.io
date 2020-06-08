@@ -3,10 +3,14 @@ layout: post
 title:  "微信支付报错：curl出错，错误码:60，解决方法"
 keywords: "微信支付"
 description: ""
-date: 2020-03-25
-category: php
+date: 2020-04-06
+category: wxpay
 ---
 
+<p>通常的情况下，微信支付是不会报curl 出错了，错误码：60，错误码：58等信息。</p>
+<p>错误信息“PHP Fatal error:  'curl_ssl请求失败，错误码：60，错误信息：Could not resolve host: api.mch.weixin.qq.com”</p>
+
+<p>解决方法：把这两行代码注释掉，修改为下面的代码。</p>
 <pre><code>// curl_setopt($ch,CURLOPT_SSL_VERIFYPEER,TRUE);
 // curl_setopt($ch,CURLOPT_SSL_VERIFYHOST,2);//严格校验
 if(stripos($url,"https://") !== FALSE) {

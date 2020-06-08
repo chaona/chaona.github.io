@@ -1,0 +1,36 @@
+---
+layout: post
+title:  "谷歌浏览器模拟苹果手机"
+keywords: "模拟苹果手机"
+description: "在windows系统中，使用谷歌Chrome浏览器模拟苹果手机。"
+date: 2020-06-06
+category: browser
+---
+
+<p>右击桌面的谷歌浏览器图标，选择“打开文件所在位置”，复制地址栏内容：</p>
+<p><pre><code>AppData\Local\Google\Chrome\Application</code></pre></p>
+
+<p>按 <code>WIN + R</code>，输入 <code>cmd</code>，打开命令窗口，输入<code>cd </code>cd+空格，粘贴复制到的内容，按<code>Enter</code>回车键。</p>
+
+<p>输入<pre><code>chrome.exe --user-agent="Mozilla/5.0 (iPhone; CPU iPhone OS 5_0_1 like Mac OS X) AppleWebKit/534.46 (KHTML, like Gecko) Mobile/9A405"</code></pre></p>
+
+<p>按<code>Enter</code>回车键，即可实现在windows系统中，使用谷歌Chrome浏览器模拟苹果手机。</p>
+
+<h2>补充，模拟其他手机的指令：</h2>
+
+<p>谷歌Android版手机模拟器</p>
+<p><pre><code>chrome.exe --user-agent="Mozilla/5.0 (Linux; U; Android 2.2; en-us; Nexus One Build/FRF91) AppleWebKit/533.1 (KHTML, like Gecko) Version/4.0 Mobile Safari/533.1"</code></pre></p>
+
+<p>苹果iPhone 4版手机模拟器</p>
+<p><pre><code>chrome.exe --user-agent="Mozilla/5.0 (iPhone; CPU iPhone OS 5_0_1 like Mac OS X) AppleWebKit/534.46 (KHTML, like Gecko) Mobile/9A405"</code></pre></p>
+
+<p>苹果iPad 2版手机模拟器</p>
+<p><pre><code>chrome.exe --user-agent="Mozilla/5.0 (iPad; CPU OS 5_0_1 like Mac OS X) AppleWebKit/534.46 (KHTML, like Gecko) Mobile/9A405"</code></pre></p>
+
+<p>诺基亚N97版手机模拟器</p>
+<p><pre><code>chrome.exe --user-agent="Mozilla/5.0 (SymbianOS/9.4; Series60/5.0 NokiaN97-1/20.0.019; Profile/MIDP-2.1 Configuration/CLDC-1.1) AppleWebKit/525 (KHTML, like Gecko) BrowserNG/7.1.18124"</code></pre></p>
+
+<h2>注意：</h2>
+<p>如果想切换回普通浏览器模式，关掉所有Chrome浏览器，重开即可。</p>
+<p>如果不想关闭浏览器，切回普通浏览器模式，则访问：</p>
+<p><pre><code>chrome.exe --user-agent="Mozilla/5.0 (Windows NT 6.1) AppleWebKit/535.7 (KHTML, like Gecko) Chrome/16.0.912.77 Safari/535.7"</code></pre></p>

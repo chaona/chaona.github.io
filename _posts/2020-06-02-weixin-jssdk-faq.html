@@ -1,0 +1,86 @@
+---
+layout: post
+title:  "h5调用微信的扫一扫功能"
+keywords: "微信扫一扫"
+description: "h5调用微信的扫一扫功能，可以指定扫二维码还是一维码。"
+date: 2020-06-02
+category: jssdk
+---
+
+<p>h5调用微信的扫一扫功能，可以指定扫二维码还是一维码，默认二者都有。</p>
+<p>第一步：引入jssdk库</p>
+<pre><code><script src="https://res.wx.qq.com/open/js/jweixin-1.6.0.js"></script></code></pre>
+
+<p>第二步：html代码</p>
+<pre><code><div class="form-group" style="margin: 0 auto;">
+	<div class="col-xs-10">
+		<input disabled="disabled" type="text" id="cardInput" class="form-control" placeholder="扫一扫读者证背面条形码">
+	</div>
+	<label for="cardInput" class="btn btn-info col-xs-2 " id="scanQRCode">扫码</label>
+</div>	
+</code></pre>
+
+<p>第三步：js核心代码</p>
+<pre><code>wx.config({
+	debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+
+	// 注意，以下4个参数由后端程序员提供，前端无需关心。
+	appId: '<?php echo $signPackage["appId"];?>', // 必填，公众号的唯一标识
+	timestamp: <?php echo $signPackage["timestamp"];?>, // 必填，生成签名的时间戳
+	nonceStr: '<?php echo $signPackage["nonceStr"];?>', // 必填，生成签名的随机串
+	signature: '<?php echo $signPackage["signature"];?>',// 必填，签名
+
+	jsApiList: [
+		// 所有要调用的 API 都要加到这个列表中
+		'checkJsApi', 
+		'scanQRCode'
+	] // 必填，需要使用的JS接口列表
+});
+
+var cardId;// 借书卡卡号
+
+wx.ready(function () {
+	// 在这里调用 API
+
+	wx.checkJsApi({
+	    jsApiList: [
+	        'checkJsApi', 
+			'scanQRCode'
+	    ],
+	    success: function(res) {
+	        if (res.checkResult.getLocation == false) {
+	            alert('你的微信版本太低，不支持微信JS接口，请升级到最新的微信版本！');
+	            return;
+	        }
+	    }
+	});
+	
+	// 微信扫一扫，直接返回结果
+	document.querySelector('#scanQRCode').onclick = function () {
+		wx.scanQRCode({
+		  	needResult: 1, // 默认为0，扫描结果由微信处理，1则直接返回扫描结果，
+		  	scanType: ["barCode"], // 可以指定扫二维码还是一维码，默认二者都有 ["qrCode","barCode"]
+		  	desc: 'scanQRCode desc',
+		  	success: function (res) {
+		  		cardId = checkBarCode(res.resultStr);
+
+		  		if(! cardId){
+		  			alert("请扫码借书卡背面条形码");
+		  		} else {
+		  			$("#cardInput").val(cardId);
+		  		}
+		  		// alert(res.resultStr); // CODE_39,01010001457574
+		  	}
+		});
+	};
+
+});
+
+// 检测条形码
+function checkBarCode(str){
+	if(str.length == 22 && str.match("CODE_39")){
+		return str.substr(8);
+	}
+	return false; 
+}
+</code></pre>
