@@ -1,0 +1,18 @@
+---
+layout: post
+title:  "ubuntu Error: bad username; while reading /etc/crontab"
+keywords: "bad username,crontab"
+description: "bad username; while reading /etc/crontab 解决方案。"
+date: 2020-07-15
+category: linux
+---
+
+<p>解决：由于编辑格式引发错误，前往vi /etc/crontab 重新修改。</p>
+<p>注意：1.必须有 username。2.用英文空格分割。</p>
+<p>格式如下：时间 用户 执行的命令</p>
+
+<pre># 同步阿里云时间:
+20 1 * * * root ntpdate ntp1.aliyun.com 1>/dev/null 2>&1
+21 1 * * * root ntpdate ntp2.aliyun.com 1>/dev/null 2>&1
+21 1 * * * root hwclock --systohc 1>/dev/null 2>&1
+</pre>
