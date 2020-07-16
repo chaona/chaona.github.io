@@ -9,7 +9,11 @@ category: linux
 
 <p>错误：1129; Host is blocked because of many connection errors; unblock with 'mysqladmin flush-hosts'</p>
 <p>原因：同一个ip在短时间内产生太多（超过mysql数据库max_connection_errors的最大值）中断了数据库连接而导致的阻塞。</p>
-<p>解决方案：登录mysql后执行下列命令。</p>
+<p>解决方案1：登录mysql后执行下列命令。</p>
 
 <pre><code>show variables like '%max_connection_errors%'; #查看最大值
 set global max_connect_errors = 1000; #重新设置最大值</code></pre>
+
+<p>解决方案2：命令行或终端执行下列命令。</p>
+<pre><code>mysqladmin -u root -p flush-hosts</code></pre>
+<p>接着输入root账号密码即可。</p>
