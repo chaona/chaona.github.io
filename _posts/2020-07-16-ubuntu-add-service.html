@@ -7,52 +7,26 @@ date: 2020-07-16
 category: linux
 ---
 
-<p>ubuntu20.04压根就没有rc.local，而且很多发行版都推荐使用systemd而不是initd了。</p>
-<p>1.准备sh脚本文件,如：startWeb.sh</p>
-
-<pre><code>#!/bin/sh
-
-#java environment
-export JAVA_HOME=/usr/local/java/jdk1.8.0_202
-export CLASSPATH=.:${JAVA_HOME}/jre/lib/rt.jar:${JAVA_HOME}/lib/dt.jar:${JAVA_HOME}/lib/tools.jar
-export PATH=$PATH:${JAVA_HOME}/bin
-
-# 杀死sszj_school.jar进程
-java_id=`ps -ef | grep sszj_school.jar | grep -v "grep" | awk '{print $2}'` 
-
-for id in $java_id
-do
-    kill -9 $id    
-done
-
-# 杀死sszj_school.log进程
-log_id=`ps -ef | grep sszj_school.log | grep -v "grep" | awk '{print $2}'`
-
-for id in $log_id
-do
-    kill -9 $id
-done
-
-# 启动sszj_school.jar
-nohup java -jar /usr/local/bin/sszj_school.jar > /usr/local/bin/sszj_school.log &
-
-echo "web服务启动中..."</code></pre>
-<p>路径是/usr/local/bin/startWeb.sh吧。<code>chmod 755 startWeb.sh</code>使脚本拥有可执行权限。</p>
-
-<p>2.创建一个service文件</p>
-<p>进入/etc/systemd/system/，创建一个startWeb.service文件，内容如下</p>
+<p>通过ubuntu20.04自带的service，可以很方便的创建后台运行程序。</p>
+<p>service文件路径： <mark>/lib/systemd/system</mark>。</p>
+<p>service文件包括多个部分，下面是一个简单的后台运行程序的service文件</p>
 
 <pre><code>[Unit]
-Description=Web start   #简介
-After=startWeb.service　#脚本所需要的前置service，在/etc/systemd/system/下
+Description= start web server #服务简介
+
 [Service]
-ExecStart=/usr/local/bin/startWeb.sh #sh文件路径，后面也可以跟参数，比如 -D -I
-[Install]
-WantedBy=multi-user.target</code></pre>
+type=forking
+ExecStart=/usr/local/java/jdk1.8.0_202/bin/java -jar /usr/local/bin/sszj_school.jar #指令
+</code></pre>
 
-
-<p>3.启动服务</p>
+<p>启动服务:service文件改动后要重新加载一下。</p>
+<pre><code># 重新加载service文件 
+systemctl daemon-reload
+# 启动服务 
+service leshan-server start 
+# 停止服务 
+service leshan-server stop</code></pre>
+ 
 <p>使用以下命令使能这个服务开机启动：</p>
-<pre><code># 重新加载配置文件
-$ sudo systemctl daemon-reload  #service文件改动后要重新加载一下
-$ sudo systemctl enable startWeb.service  #设置开机启动</code></pre>
+<pre><code># 设置开机启动
+systemctl enable startWeb.service</code></pre>
