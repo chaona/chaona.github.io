@@ -1,0 +1,266 @@
+---
+layout: post
+title:  "第1章 python的基本类型"
+keywords: "python,基本类型"
+description: "python基本类型：数字类型（整形,浮点型、布尔类型、复数）、10,2,8,16进制与转换、字符串及运算。"
+date: 2020-11-27
+category: python
+---
+
+<p>python基本类型：数字类型（整形,浮点型、布尔类型、复数）、10,2,8,16进制与转换、字符串及运算。</p>
+
+<p>什么是代码？</p>
+<p>代码是现实世界事物在计算机世界中的映射。</p>
+<p>什么是写代码？</p>
+<p>写代码是将现实世界中的事物用计算机语言来描述。</p>
+<p><strong>好记性不如烂笔头！</strong></p>
+
+
+<h2>1、数字类型 Number（整形,浮点型、布尔类型、复数）</h2>
+<h3>整数：int，浮点数：float。</h3>
+<p><pre><code>>>> type(1)
+<class 'int'>
+>>> type(-1)
+<class 'int'>
+>>> type(1.1)
+<class 'float'>
+>>> type(1+0.1)
+<class 'float'>
+>>> type(1+1)
+<class 'int'>
+>>> type(1+1.0)
+<class 'float'>
+
+
+>>> type(1*1)
+<class 'int'>
+>>> type(1*1.0)
+<class 'float'>
+>>> type(2/2)
+<class 'float'>
+>>> type(2//2) #//双斜杠是整除，只会保留整数部分 
+<class 'int'>
+>>> 2/2
+1.0
+>>> 2//2
+1
+>>> 1//2
+0
+</code></pre></p>
+
+<p><strong>//双斜杠是整除，只会保留整数部分 </strong></p>
+
+<h3>数字布尔类型 bool</h3>
+<p>bool布尔类型：表示真 True、假 False。注意首字母大写。只要是非0数字都表示bool True。</p>
+<p><pre><code>>>> type(True)
+<class 'bool'>
+>>> type(False)
+<class 'bool'>
+>>> int(False)
+0
+>>> int(True)
+1
+>>> bool(0)
+False
+>>> bool(1)
+True
+>>> bool(2)
+True
+</code></pre></p>
+
+<p><strong>除了0，None外，一系列的空值都会认为是False。</strong></p>
+<p><pre><code>>>> bool('abc')
+True
+>>> bool('')
+False
+>>> bool([1,2,3])
+True
+>>> bool([])
+False
+>>> bool({1,2,3})
+True
+>>> bool({})
+False
+>>> bool(None)
+False</code></pre></p>
+
+<h3>复数 complex</h3>
+<p>python中表示复数，使用j。</p>
+<p><pre><code>>>> 36j
+36j</code></pre></p>
+
+
+<h2>2、10,2,8,16进制与转换</h2>
+<p>10进制，满10进1。0,1,2,3.。。9,10</p>
+<p>2进制，满2进1。0,1,10</p>
+<p>8进制，满8进1. 0,1,2.。。7,10</p>
+<p>16进制，满16进1. 0,1,2，。。。9，A,B,C,D,E,F</p>
+
+<p>60秒=1分钟也是一种进制方式，只不过是在生活中常用。</p>
+
+<p>2进制在计算机中，用0b表示</p>
+<p><pre><code>>>> 0b10
+2
+>>> 0b11
+3</code></pre></p>
+
+<p>8进制在计算机中，用0o表示</p>
+<p><pre><code>>>> 0o10
+8
+>>> 0o11
+9</code></pre></p>
+
+<p>16进制在计算机中，用0x表示</p>
+<p><pre><code>>>> 0x10
+16
+>>> 0x11
+17
+>>> 0x1F
+31</code></pre></p>
+
+<p>进制转换</p>
+<p>任意进制转2进制：</p>
+<p><pre><code>>>> bin(10)
+'0b1010'
+>>> bin(0o7)
+'0b111'
+>>> bin(0xE)
+'0b1110'</code></pre></p>
+
+<p>任意进制转10进制：</p>
+<p><pre><code>>>> int(0b111)
+7
+>>> int(0o77)
+63
+>>> int(0x7E)
+126</code></pre></p>
+
+<p>任意进制转16进制：</p>
+<p><pre><code>>>> hex(888)
+'0x378'
+>>> hex(0o777)
+'0x1ff'</code></pre></p>
+
+<p>任意进制转8进制：</p>
+<p><pre><code>>>> oct(0b111)
+'0o7'
+>>> oct(0x777)
+'0o3567'</code></pre></p>
+
+<h2>3、字符串 str</h2>
+<h3>单引号，双引号；成对出现。</h3>
+<p><pre><code>>>> 'hello world'
+'hello world'
+>>> "hello world"
+'hello world'
+>>> 1
+1
+>>> '1'
+'1'
+>>> type(1)
+<class 'int'>
+>>> type('1')
+<class 'str'></code></pre></p>
+
+<h3>多行字符串 ： 使用三引号</h3>
+<p><pre><code>>>> '''
+... hello world
+... hello world
+... '''
+'\nhello world\nhello world\n'
+>>> """
+... hello world
+... hello world
+... """
+'\nhello world\nhello world\n'</code></pre></p>
+
+<p>单引号 双引号 换行使用 \</p>
+<p><pre><code>>>> 'hello \
+... world'
+'hello world'
+>>> "hello \
+... world"
+'hello world'</code></pre></p>
+
+<h3>转义字符 特殊的字符</h3>
+<p>无法“看见”的字符；与语言本身语法有冲突的字符。</p>
+<p><pre><code>\n #换行
+\' #单引号
+\t #横向制表符
+\r #回车
+</code></pre></p>
+<p><pre><code>>>> "let's go"
+"let's go"
+>>> 'let\'s go'
+"let's go"
+
+# \n 换行
+>>> """hello world\nhello world"""
+'hello world\nhello world'
+>>> print("""hello world\nhello world""")
+hello world
+hello world
+>>> print('hello world\nhello world')
+hello world
+hello world
+>>> print("hello world\nhello world")
+hello world
+hello world</code></pre></p>
+
+<h3>原始字符串 r</h3>
+<p><pre><code>>>> print('c:\northwind\northwest')
+c:
+orthwind
+orthwest
+>>> print('c:\\northwind\\northwest')
+c:\northwind\northwest
+>>> print(r'c:\northwind\northwest')
+c:\northwind\northwest</code></pre></p>
+<p>不是一个普通的字符串，而是一个原始字符串。</p>
+
+
+<h2>4、字符串的运算</h2>
+<h3>字符串拼接</h3>
+<p><pre><code>>>> "hello"+"world"
+'helloworld'
+>>> "hello"*3
+'hellohellohello'</code></pre></p>
+
+<h3>字符串裁剪</h3>
+<p><pre><code>>>> "hello world"[0]
+'h'
+>>> "hello world"[7]
+'o'
+>>> "hello world"[11]
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+IndexError: string index out of range
+>>> "hello world"[10]
+'d'
+>>> "hello world"[-1]
+'d'
+>>> "hello world"[-2]
+'l'</code></pre></p>
+<p><strong>[n]表示，这个字符的序号，序号从0开始。</strong></p>
+<p><strong>[-n]表示，在这个字符串的末尾，往前数n次，得到的这个字符。</strong></p>
+
+<p><pre><code>>>> "hello world"[0:4]
+'hell'
+>>> "hello world"[0:5]
+'hello'
+>>> "hello world"[2:5]
+'llo'
+>>> "hello world"[0:-1]
+'hello worl'
+>>> "hello world"[0:-3]
+'hello wo'</code></pre></p>
+<p><strong>[m:n]表示，m表示开始的序号，n表示结束的序号，再加1</strong></p>
+<p><strong>[m:-n]表示，m表示开始的序号，-n表示步长</strong></p>
+<p><strong>[m:]表示，m表示开始的序号，什么也不写，代表截取到字符串的末尾</strong></p>
+<p><strong>[-n:]表示，-n表示在这个字符串的末尾，倒着截取</strong></p>
+<p><pre><code>>>> "hello world"[6:11]
+'world'
+>>> "hello world"[6:1000]
+'world'
+>>> "hello world"[6:]
+'world'</code></pre></p>
