@@ -1,0 +1,137 @@
+---
+layout: post
+title:  "第2章 python中的“组”"
+keywords: "python,组"
+description: "在Python中用来表示“组”的一些类型，包括：元组、列表、集合和字典。"
+date: 2020-11-27
+category: python
+---
+
+<p>现实世界总是存在一组一组的事物。</p>
+<p>在Python中用来表示“组”的一些类型，包括：元组、列表、集合和字典。</p>
+
+
+<h2>1、列表</h2>
+<h3>列表 list</h3>
+<p><pre><code>>>> type([1,2,3,4])
+class 'list'
+>>> type(['hello','world',1,9,True,False])
+class 'list'
+</code></pre></p>
+
+<h3>嵌套列表 list</h3>
+<p><pre><code>>>> type([[1,2],['hello','world'],[True,False]])
+class 'list'
+</code></pre></p>
+
+<h3>列表的基本操作</h3>
+<p><pre><code>>>> ['java','php','python','mysql'][0]
+'java'
+>>> ['java','php','python','mysql'][3]
+'mysql'
+# 截取出来的是列表;
+>>> ['java','php','python','mysql'][1:3]
+['php', 'python']
+>>> ['java','php','python','mysql'][-1:]
+['mysql']</code></pre></p>
+<p><strong>切片</strong></p>
+
+<p><pre><code>>>> ['java','php','python','mysql']+['html','css']
+['java', 'php', 'python', 'mysql', 'html', 'css']
+>>> ['html','css']*3
+['html', 'css', 'html', 'css', 'html', 'css']</code></pre></p>
+
+<h2>2、元组 tuple 美[tʌpl]</h2>
+
+<p><pre><code>>>> type((1,2,3,4))
+class 'tuple'
+>>> (1,2,3,4)[0]
+1
+>>> (1,2,3,4)[3]
+4
+>>> (1,2,3,4)[0:2]
+(1, 2)
+>>> (1,2,3,4)[-1:]
+(4,)
+>>> (1,2,3,4)*2
+(1, 2, 3, 4, 1, 2, 3, 4)
+>>> (1,2,3,4)+(7,8,9)
+(1, 2, 3, 4, 7, 8, 9)</code></pre></p>
+
+<p><pre><code>>>> type((1))
+class 'int'
+>>> type((1,))
+class 'tuple'
+>>> type(())
+class 'tuple'</code></pre></p>
+
+
+<p><strong>总结：str list tuple 都是序列，每个元素都有一个序号</strong></p>
+<p>相同的操作方法：索引取值，切片，+，*，in，not in，len，max，min</p>
+<p><pre><code>>>> 'hello world'[2]
+'l'
+>>> [1,2,4][2]
+4
+>>> (1,2,3,4,5)[0:3]
+(1, 2, 3)
+>>> (1,2,3,4,5)[-1:]
+(5,)
+>>> "hello world"[0:8:2]
+'hlow'
+>>> ["hello"] + ['world']
+['hello', 'world']
+>>> (1,3,5)*4
+(1, 3, 5, 1, 3, 5, 1, 3, 5, 1, 3, 5)
+>>> 3 in (1,3,5)
+True
+>>> 3 not in [1,3,5]
+False
+>>> len((1,3,5))
+3
+>>> len('hello world')
+11
+>>> max([1,39,3])
+39
+>>> min((2,5,8))
+2
+>>> max('hello world')
+'w'
+>>> min('hello world')
+' '
+>>> min('helloworld')
+'d'
+>>> ord('w')
+119
+>>> ord(' ')
+32
+>>> ord('d')
+100</code></pre></p>
+<p><strong>ord()字符转ASCII码</strong></p>
+
+<h2>3、set 集合</h2>
+<p>集合是无序，不重复</p>
+<p><pre><code>>>> {1,2,4,3,4,3,2,1,1}
+{1, 2, 3, 4}
+>>> len({1,2,3,4,5})
+5
+>>> 1 in {1,2,3}
+True
+>>> 1 not in {1,2,3}
+False
+>>> {1,2,3,4,5,6,7} - {5,6}
+{1, 2, 3, 4, 7}
+>>> {1,2,3,4,5,6,7} - {5,6,8}
+{1, 2, 3, 4, 7}
+>>> {1,2,3,4} & {3,4}
+{3, 4}
+>>> {1,2,3,4,5,6} | {3,4,7}
+{1, 2, 3, 4, 5, 6, 7}
+>>> type(set())
+class 'set'
+>>> len(set())
+0</code></pre></p>
+<p><strong>“-”表示求两个集合的差集。“&”表示交集。“|”表示并集。使用set()来定义空集。</strong></p>
+
+<h2>4、dict 字典</h2>
+
+<h2>5、总结</h2>
