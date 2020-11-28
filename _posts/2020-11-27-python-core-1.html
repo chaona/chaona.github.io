@@ -132,6 +132,17 @@ class 'set'
 0</code></pre></p>
 <p><strong>“-”表示求两个集合的差集。“&”表示交集。“|”表示并集。使用set()来定义空集。</strong></p>
 
-<h2>4、dict 字典</h2>
+<h2>4、dict 字典 </h2>
+<p>key和value,最常见的操作是通过key找value</p>
+<p>一个字典有很多个key和value构成，是集合类型（set）。set没有key，dict有。</p>
+<p>value可以是int str float list set dict 等等任意类型。</p>
+<p>key只能是不可变类型：int str tuple</p>
+<p><pre><code>>>> type({'q':'query','w':'world','h':'hello'})
+class 'dict'
+>>> {'q':'query','w':'world','h':'hello'}['q']
+'query'
+>>> {'q':'query','w':'world','h':'hello'}['h']
+'hello'</code></pre></p>
 
 <h2>5、总结</h2>
+<p><img class="img-responsive center-block" src="{{ site.url }}/static/images/201127/python-core.png" /></p>
