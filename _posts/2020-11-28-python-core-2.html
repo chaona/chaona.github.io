@@ -112,91 +112,196 @@ TypeError: 'tuple' object does not support item assignment
 >>> 2**3
 8</code></pre></p>
 
-<p><pre><code>>>> type((1))
-class 'int'
->>> type((1,))
-class 'tuple'
->>> type(())
-class 'tuple'</code></pre></p>
-
-
-<p><strong>总结：str list tuple 都是序列，每个元素都有一个序号</strong></p>
-<p>相同的操作方法：索引取值，切片，+，*，in，not in，len，max，min</p>
-<p><pre><code>>>> 'hello world'[2]
-'l'
->>> [1,2,4][2]
-4
->>> (1,2,3,4,5)[0:3]
-(1, 2, 3)
->>> (1,2,3,4,5)[-1:]
-(5,)
->>> "hello world"[0:8:2]
-'hlow'
->>> ["hello"] + ['world']
-['hello', 'world']
->>> (1,3,5)*4
-(1, 3, 5, 1, 3, 5, 1, 3, 5, 1, 3, 5)
->>> 3 in (1,3,5)
-True
->>> 3 not in [1,3,5]
-False
->>> len((1,3,5))
-3
->>> len('hello world')
-11
->>> max([1,39,3])
-39
->>> min((2,5,8))
+<h3>赋值运算符</h3>
+<p>=、+=、-=、*=、/=、%/、**=、//=。就是在算术运算符上加‘=’号，先做运算，再赋值。重点是‘赋值’。</p>
+<p><pre><code>
+>>> c = 1
+>>> c = c + 1
+>>> print(c)
 2
->>> max('hello world')
-'w'
->>> min('hello world')
-' '
->>> min('helloworld')
-'d'
->>> ord('w')
-119
->>> ord(' ')
-32
->>> ord('d')
-100</code></pre></p>
-<p><strong>ord()字符转ASCII码</strong></p>
-
-<h2>3、set 集合</h2>
-<p>集合是无序，不重复</p>
-<p><pre><code>>>> {1,2,4,3,4,3,2,1,1}
-{1, 2, 3, 4}
->>> len({1,2,3,4,5})
+>>> c += 1
+>>> print(c)
+3
+>>> c++
+SyntaxError: invalid syntax
+>>> c--
+SyntaxError: invalid syntax
+>>> b = 2
+>>> a = 3
+>>> b += a
+>>> print(b)
 5
->>> 1 in {1,2,3}
+>>> b -= a
+>>> print(b)
+2
+>>> b *= a
+>>> print(b)
+6	
+</code></pre></p>
+<pre><code>
+>>> b = 2
+>>> a = 1
+>>> a + b
+3
+>>> print(a)
+1
+>>> print(b)
+2
+>>> b = b + a
+>>> print(b)
+3
+</code></pre>
+
+
+<h3>比较（关系）运算符</h3>
+<p>==、>=、&lt;=、!=、&lt;、>。比较的结果是个bool值。</p>
+
+<p>不只是只有数字才能做比较运算。</p>
+<p><pre><code>>>> 1 == 1
 True
->>> 1 not in {1,2,3}
+>>> 1 > 1
 False
->>> {1,2,3,4,5,6,7} - {5,6}
-{1, 2, 3, 4, 7}
->>> {1,2,3,4,5,6,7} - {5,6,8}
-{1, 2, 3, 4, 7}
->>> {1,2,3,4} & {3,4}
-{3, 4}
->>> {1,2,3,4,5,6} | {3,4,7}
-{1, 2, 3, 4, 5, 6, 7}
->>> type(set())
-class 'set'
->>> len(set())
-0</code></pre></p>
-<p><strong>“-”表示求两个集合的差集。“&”表示交集。“|”表示并集。使用set()来定义空集。</strong></p>
+>>> 1 >= 1
+True
+>>> a = 1
+>>> b = 2
+>>> a != b
+True
+>>> 'a' > 'b'
+False
+>>> ord('a')
+97
+>>> ord('b')
+98
+>>> 'abc' < 'abd'
+True
+>>> ord('abc')
+Traceback (most recent call last):
+  File "<pyshell#35>", line 1, in <module>
+    ord('abc')
+TypeError: ord() expected a character, but string of length 3 found
+>>> [1,2,3] < [2,3,4]
+True
+>>> [3,1,2] < [4,1,1]
+True
+>>> [1,10,100] < [2,1,1]
+True
+>>> (1,2,3) < (1,3,2)
+True
+</code></pre></p>
 
-<h2>4、dict 字典 </h2>
-<p>key和value,最常见的操作是通过key找value</p>
-<p>一个字典有很多个key和value构成，是集合类型（set）。set没有key，dict有。</p>
-<p>value可以是int str float list set dict 等等任意类型。</p>
-<p>key只能是不可变类型：int str tuple</p>
-<p><pre><code>>>> type({'q':'query','w':'world','h':'hello'})
-class 'dict'
->>> {'q':'query','w':'world','h':'hello'}['q']
-'query'
->>> {'q':'query','w':'world','h':'hello'}['h']
-'hello'</code></pre></p>
+<h3>逻辑运算符</h3>
+<p>and（且）、or（或）、not（非）。操作类型和结果都是bool类型。</p>
+<p><strong>and、or当它可以得到结果，就不会进行下一个bool的运算，来提高性能。类似java的&& || 。</strong></p>
+<p><pre><code>
+>>> 1 and 1
+1
+>>> 'a' and 'b'
+'b'
+>>> 'a' or 'b'
+'a'
+>>> not 'a'
+False
+</code></pre></p>
 
-<h2>5、总结</h2>
-<p><img class="img-responsive center-block" src="{{ site.url }}/static/images/201127/python-core.png" /></p>
+<p>int float 0 被认为是False，非0表示True。空字符串被认为False。空的列表、元组、集合、字典被认为False。</p>
+<pre><code>>>> not 0.1
+False
+>>> not ''
+True
+>>> not 0
+True
+>>> not '0'
+False
+>>> not []
+True
+>>> not (1,2)
+False</code></pre>
+
+
+<h3>成员运算符</h3>
+<p>in 、 not in。用来判断一个元素是否在另外一组元素中。返回值是bool值。</p>
+<pre><code>>>> a = 1
+>>> a in [1,2,3]
+True
+>>> b = 6
+>>> b in [1,2,3]
+False
+>>> b not in [1,2,3]
+True
+>>> b = 'h'
+>>> b in 'hello'
+True</code></pre>
+<p>对于dict字典验证的是key，是否在。</p>
+<pre><code>>>> b = 'a'
+>>> b in {'c':1}
+False
+>>> b = 1
+>>> b in {'c':1}
+False
+>>> b = 'c'
+>>> b in {'c':1}
+True</code></pre>
+
+<h3>身份运算符</h3>
+<p>is、 is not，返回结果，bool值</p>
+<p>is 比较的是两个变量的身份是否相等。</p>
+<pre><code>>>> a = 1
+>>> b = 1
+>>> a is b
+True
+>>> a == b
+True
+>>> a = 1
+>>> b = 1.0
+>>> a == b
+True
+>>> a is b
+False
+>>> id(a)
+8791303984800
+>>> id(b)
+40849136</code></pre>
+
+<p>set集合是无需的，==比较的是值是否相等。tuple元组是有序的。is比较的是身份是否相等。</p>
+<pre><code>>>> a = {1,2,3}
+>>> b = {2,1,3}
+>>> a == b
+True
+>>> a is b
+False
+>>> c = (1,2,3)
+>>> d = (2,1,3)
+>>> c == d
+False
+>>> c is d
+False</code></pre>
+
+<p><strong>如何判断变量的值、身份与类型？</strong></p>
+<pre><code>>>> a = 'hello'
+>>> isinstance(a, str)
+True
+>>> isinstance(a, int)
+False
+>>> isinstance(a, (int, str, float))
+True
+>>> isinstance(a, (int,float))
+False</code></pre>
+
+<h3>位运算符</h3>
+<p>& 按位与、| 按位或、^ 按位异或、~ 按位取反、&lt;&lt; 左移动、>> 右移动</p>
+<p>把数字当作二进制数进行运算。</p>
+
+<p>& 按位与</p>
+<pre><code>>>> a = 2
+>>> b = 3
+>>> a & b
+2
+>>> 0b10
+2
+>>> 0b11
+3</code></pre>
+
+<p>| 按位或</p>
+<pre><code>>>> a | b
+3</code></pre>
