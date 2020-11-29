@@ -1,0 +1,97 @@
+---
+layout: post
+title:  "第4章 分支、循环、条件与枚举"
+keywords: "python,分支,循环,条件,枚举"
+description: "代码的基本逻辑结构，包括条件控制（if else）、循环控制（for in 、while）、表达式与运算符的优先级。python枚举类型。"
+date: 2020-11-29
+category: python
+---
+
+<p>代码的基本逻辑结构，包括条件控制（if else）、循环控制（for in 、while）、表达式与运算符的优先级。python枚举类型。</p>
+
+
+<h2>1、什么是表达式？</h2>
+<p>表达式（Expression）是运算符（operator）和操作数（operand）所构成的序列。</p>
+<pre><code>>>> 1 + 1
+2
+>>> a = 3
+>>> a = 1 + 2 + 3</code></pre>
+
+
+<h2>2、表达式的优先级</h2>
+<pre><code>>>> a = 1
+>>> b = 2
+>>> c = 3
+>>> a + b * c
+7
+>>> a or b and c
+1</code></pre>
+<pre><code>>>> a = 1
+>>> b= 2
+>>> c = 3
+>>> not a or b + c == c
+False
+>>> not a or (b + c) == c
+False
+>>> not a or ((b + c) == c)
+False
+>>> (not a) or ((b + c) == c)
+False</code></pre>
+
+<h2>条件控制</h2>
+<p>python靠缩进区分代码块，python没有‘{}’，每行语句不强制加‘；’</p>
+
+<pre><code>'''
+模拟用户登录
+'''
+
+account = 'root'
+password = 'root'
+
+print('please input account')
+user_account = input()
+
+print('please input password')
+user_password = input()
+
+if account == user_account and password == user_password:
+	print('success')
+else:
+	print('fail')
+</code></pre>
+
+<p><pre><code>'''
+snippet 片段
+'''
+a = True
+
+if a:
+	print('hello')
+else:
+	print('python')
+
+for x in xrange(1,10):
+	pass #空语句/占位语句
+
+def function():
+	pass</code></pre></p>
+
+<p>嵌套分支：多层嵌套的话，最好把代码提取出来，封装成函数。</p>
+
+<h2>改变思维定式</h2>
+<pre><code>
+a = 1
+b = 0
+
+# a 和 b 不能同时为False，找出True的那一个
+
+# 传统方式
+if a:
+	pass
+else:
+	pass
+
+# 改变思维
+a or b
+
+</code></pre>
