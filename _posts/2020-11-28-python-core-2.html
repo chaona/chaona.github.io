@@ -1,0 +1,202 @@
+---
+layout: post
+title:  "第3章 变量与运算符"
+keywords: "python,组"
+description: "变量的意义与七种运算符：算术运算符、赋值运算符、比较（关系）运算符、逻辑运算符、成员运算符、身份运算符、位运算符。"
+date: 2020-11-28
+category: python
+---
+
+<p>在Python中变量就是“名字”。命名可读性要强！</p>
+<p>七种运算符：算术运算符、赋值运算符、比较（关系）运算符、逻辑运算符、成员运算符、身份运算符、位运算符。</p>
+
+
+<h2>1、变量</h2>
+<p>变量就是名字。</p>
+
+<p>变量的命名规则：字母、数字、下划线。区分大小写。数字不能打头。系统关键字（保留关键字）不能用作变量名。</p>
+<p><pre><code>
+>>> a = 1
+>>> b = a
+>>> a = 3
+>>> print(b)
+1
+>>> a = [1,2,3,4,5]
+>>> b = a
+>>> a[0] = '1'
+>>> print(a)
+['1', 2, 3, 4, 5]
+>>> print(b)
+['1', 2, 3, 4, 5]
+</code></pre></p>
+
+<h2>2、值类型与引用类型</h2>
+<p>int str tuple<strong>（不可改变）</strong> 值类型。</p>
+<p>list set dict<strong>（可变）</strong> 引用类型。</p>
+
+<p><pre><code>>>> b = 'hello'
+>>> id(b)
+2588965129392
+>>> b = b + ' python'
+>>> id(b)
+2588964835632
+>>> print(b)
+hello python
+>>> 'python'[0]
+'p'
+>>> 'python'[0] = 'h'
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+TypeError: 'str' object does not support item assignment
+</code></pre></p>
+
+<h2>3、列表list的可变与元组tuple的不可变</h2>
+<p><pre><code>>>> a = [1,2,3]
+>>> id(a)
+2588964835072
+>>> hex(id(a))
+'0x25aca544f00'
+>>> a[0] = '1'
+>>> id(a)
+2588964835072
+>>> a = (1,2,3)
+>>> a[0] = '1'
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+TypeError: 'tuple' object does not support item assignment
+>>> b = [1,2,3]
+>>> b.append(4)
+>>> print(b)
+[1, 2, 3, 4]
+>>> c = (1,2,3)
+>>> c.append(4)
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+AttributeError: 'tuple' object has no attribute 'append'</code></pre></p>
+
+<p><pre><code>>>> a = (1,2,3,[1,2,4])
+>>> a[2]
+3
+>>> a[3]
+[1, 2, 4]
+>>> a[3][2]
+4
+>>> a[2] = '3'
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+TypeError: 'tuple' object does not support item assignment
+>>> a[3][2] = '4'
+>>> print(a)
+(1, 2, 3, [1, 2, '4'])</code></pre></p>
+
+<h2>4、运算符</h2>
+
+<h3>算术运算符</h3>
+<p>=、-、*、\、\\整除、%取模、**n次方</p>
+<p><pre><code>>>> 1+1
+2
+>>> 'hello' + 'world'
+'helloworld'
+>>> 3-1
+2
+>>> 3/2
+1.5
+>>> [1,3,5]*3
+[1, 3, 5, 1, 3, 5, 1, 3, 5]
+>>> 3//2
+1
+>>> 5%2
+1
+>>> 2**2
+4
+>>> 2**3
+8</code></pre></p>
+
+<p><pre><code>>>> type((1))
+class 'int'
+>>> type((1,))
+class 'tuple'
+>>> type(())
+class 'tuple'</code></pre></p>
+
+
+<p><strong>总结：str list tuple 都是序列，每个元素都有一个序号</strong></p>
+<p>相同的操作方法：索引取值，切片，+，*，in，not in，len，max，min</p>
+<p><pre><code>>>> 'hello world'[2]
+'l'
+>>> [1,2,4][2]
+4
+>>> (1,2,3,4,5)[0:3]
+(1, 2, 3)
+>>> (1,2,3,4,5)[-1:]
+(5,)
+>>> "hello world"[0:8:2]
+'hlow'
+>>> ["hello"] + ['world']
+['hello', 'world']
+>>> (1,3,5)*4
+(1, 3, 5, 1, 3, 5, 1, 3, 5, 1, 3, 5)
+>>> 3 in (1,3,5)
+True
+>>> 3 not in [1,3,5]
+False
+>>> len((1,3,5))
+3
+>>> len('hello world')
+11
+>>> max([1,39,3])
+39
+>>> min((2,5,8))
+2
+>>> max('hello world')
+'w'
+>>> min('hello world')
+' '
+>>> min('helloworld')
+'d'
+>>> ord('w')
+119
+>>> ord(' ')
+32
+>>> ord('d')
+100</code></pre></p>
+<p><strong>ord()字符转ASCII码</strong></p>
+
+<h2>3、set 集合</h2>
+<p>集合是无序，不重复</p>
+<p><pre><code>>>> {1,2,4,3,4,3,2,1,1}
+{1, 2, 3, 4}
+>>> len({1,2,3,4,5})
+5
+>>> 1 in {1,2,3}
+True
+>>> 1 not in {1,2,3}
+False
+>>> {1,2,3,4,5,6,7} - {5,6}
+{1, 2, 3, 4, 7}
+>>> {1,2,3,4,5,6,7} - {5,6,8}
+{1, 2, 3, 4, 7}
+>>> {1,2,3,4} & {3,4}
+{3, 4}
+>>> {1,2,3,4,5,6} | {3,4,7}
+{1, 2, 3, 4, 5, 6, 7}
+>>> type(set())
+class 'set'
+>>> len(set())
+0</code></pre></p>
+<p><strong>“-”表示求两个集合的差集。“&”表示交集。“|”表示并集。使用set()来定义空集。</strong></p>
+
+<h2>4、dict 字典 </h2>
+<p>key和value,最常见的操作是通过key找value</p>
+<p>一个字典有很多个key和value构成，是集合类型（set）。set没有key，dict有。</p>
+<p>value可以是int str float list set dict 等等任意类型。</p>
+<p>key只能是不可变类型：int str tuple</p>
+<p><pre><code>>>> type({'q':'query','w':'world','h':'hello'})
+class 'dict'
+>>> {'q':'query','w':'world','h':'hello'}['q']
+'query'
+>>> {'q':'query','w':'world','h':'hello'}['h']
+'hello'</code></pre></p>
+
+<h2>5、总结</h2>
+<p><img class="img-responsive center-block" src="{{ site.url }}/static/images/201127/python-core.png" /></p>
