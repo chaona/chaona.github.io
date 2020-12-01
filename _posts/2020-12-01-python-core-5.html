@@ -1,0 +1,67 @@
+---
+layout: post
+title:  "第5章 Python函数"
+keywords: "python,函数"
+description: "Python函数的定义、调用、序列解包、必须参数、关键字参数、默认参数等。"
+date: 2020-12-01
+category: python
+---
+
+<p>Python函数的定义、调用、序列解包、必须参数、关键字参数、默认参数等。</p>
+<p>函数最好不要过多嵌套，链接是可以接受的。最好定义变量接收函数。</p>
+
+<h2>认识函数</h2>
+
+<p>函数的特点：</p>
+<p>1.功能性。 <br>2.隐藏细节。 <br>3.避免编写重复的代码。</p>
+
+<h2>函数的定义及运行特点</h2>
+<p>1. 参数列表可以没有。 <br>2.可以有return value,没有的话，默认返回None。</p>
+
+<pre><code>'''
+1. 实现两个数字的相加
+2. 打印输入的参数
+'''
+
+def add(a, b):
+	result = a + b
+	return result
+
+def print_code(code):
+	print(code)
+
+x = add(1, 2)
+y = print_code('Python')
+
+print(x, y)
+
+#Python
+#3 None
+</code></pre>
+
+<h2>如何让函数返回多个结果</h2>
+<pre><code>'''
+计算英雄技能的伤害 
+SF skill1 skill2 skill3
+'''
+
+def damage(skill1, skill2, skill3):
+	damage1 = skill1 * 3
+	damage2 = skill2 * 2 + 10
+	damage3 = skill3 * 5
+	return damage1, damage2, damage3
+
+result = damage(1,2,3)
+print(type(result)) # class 'tuple'
+
+#序列解包 tuple元组；变量的命名要有意义
+skill1_damage, skill2_damage, skill3_damage = damage(1,2,3)
+
+print(skill1_damage, skill2_damage, skill3_damage)
+#3 14 15
+</code></pre>
+
+<h3>序列解包</h3>
+<p>元素的个数要相等。</p>
+
+<h3>链式赋值</h3>

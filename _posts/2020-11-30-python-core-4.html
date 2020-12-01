@@ -1,16 +1,13 @@
 ---
 layout: post
-title:  "第5章 包、模块、函数与变量作用域"
-keywords: "python,包,模块,函数,变量作用域"
-description: "Python代码的组织结构核心：包、模块与函数。Python灵活的函数参数机制（默认参数、关键字参数与列表参数）。"
+title:  "第5章 包、模块、类"
+keywords: "python,包,模块,类"
+description: "Python工程的组织结构包、模块、类。"
 date: 2020-11-30
 category: python
 ---
 
-<p>Python代码的组织结构核心：包、模块与函数。Python灵活的函数参数机制（默认参数、关键字参数与列表参数）。</p>
-
-
-<h2>Python工程的组织结构包、模块、类</h2>
+<p>Python工程的组织结构包、模块、类。</p>
 <p>包：可以理解为“文件夹”。模块：就是一个一个的文件（.py）。类。函数、变量。</p>
 <p>一个包可以包含很多模块，一个模块可以包含很多类。</p>
 <p>包的名字就是文件夹的名字；模块的名字就是文件的名字。</p>
@@ -26,3 +23,45 @@ six.c4
 print(m.b)</code></pre>
 
 <h2>__init__.py 的用法</h2>
+<p>当一个包被导入时，python自动运行__init__.py文件。</p>
+<pre><code>'''
+	__init__.py 文件
+'''
+import sys
+import io
+import datetime
+
+__all__ = ['c3', 'c6'] # 允许访问的模块列表list</code></pre>
+
+<p><strong>包和模块是不会重复导入的。注意避免循环导入。</strong></p>
+
+<h2>模块内置变量</h2>
+<pre><code>'''
+	this is a doc
+'''
+print('name: ' + __name__)
+print('package: ' + (__package__ or '不属于任何包'))
+print('doc: ' + __doc__)
+print('file: ' + __file__)
+
+# name: __main__ #单一入口文件就是 __main__
+# package: 不属于任何包
+# doc:
+#         this is a doc
+
+# file: E:\gitProject\python\seven\c8.py</code></pre>
+
+
+<h2>入口文件和普通模块内置变量的区别</h2>
+<p>入口文件的__name__是__main__，而不是他当前模块的名字。入口文件的package是NoneType，当前模块不属于任何包。</p>
+
+<h2>__name__的经典应用</h2>
+<pre><code>if __name__ == '__main__':
+	print('this is a app')
+
+print('this is a module')</code></pre>
+
+<h2>相对导入和绝对导入</h2>
+<p>top-level package顶级包的概念，与入口文件相关。入口文件最好使用绝对导入。</p>
+<p>绝对导入：一定要从顶级包开始。</p>
+<pre><code># . .. ... .... #一个点代表当前，两个代表上一层，三个代表上上一层。。。</code></pre>
