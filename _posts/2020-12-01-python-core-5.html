@@ -159,4 +159,95 @@ poo(*a) # *号的作用类似“序列解包”
 
 demo('a', 1,2,3, param2='p2')</code></pre>
 
+<pre><code>'''
+求平方和
+'''
+
+def squsum(*param):
+	sum = 0
+	for i in param:
+		sum += i**2
+	print(sum)
+
+# 调用方式一
+squsum(1,2,3,4,5,6) #91
+# 调用方式二
+squsum(*[1,2,3,4,5,6]) #91
+</code></pre>
+
 <h3>关键字可变参数</h3>
+<pre><code>'''
+城市温度
+'''
+
+def city_temp(**param):
+	print(param)
+	print(type(param))
+	for key,value in param.items():
+		print(key, ':', value)
+
+#调用方式一
+city_temp(bj='32c', xm='23C', sh='31c')
+
+#调用方式二
+a = {'bj':'32c', 'xm':'23C', 'sh':'31c'}
+city_temp(**a)
+
+city_temp()
+
+# {'bj': '32c', 'xm': '23C', 'sh': '31c'}
+# class 'dict'
+# bj : 32c
+# xm : 23C
+# sh : 31c
+# {'bj': '32c', 'xm': '23C', 'sh': '31c'}
+# class 'dict'
+# bj : 32c
+# xm : 23C
+# sh : 31c
+# {}
+# class 'dict'</code></pre>
+
+
+<h2>变量的作用域</h2>
+<pre><code># c = 10 # 全局变量 模块级别的变量
+
+def demo():
+	c = 50 # 局部变量 函数里面的变量
+
+	# python去掉了块级作用域的概念
+	# 所以for内部的函数可以在for外面调用
+	for i in range(0, 9):
+		a = 'a'
+		c += 1
+
+	print(c)
+	print(a)
+
+demo()
+print(c)
+# 59
+# a
+# NameError: name 'c' is not defined
+</code></pre>
+
+<h3>作用域链</h3>
+<pre><code>c = 1
+
+def foo1():
+	# c = 2
+	def foo2():
+		# c = 3
+		print(c)
+	foo2()
+# 作用域具有链式的特性，作用域链
+foo1()</code></pre>
+
+<h3>global关键字</h3>
+<pre><code>def doo():
+	global a
+	a = 2
+
+doo()
+print(a)
+</code></pre>
