@@ -173,3 +173,52 @@ def add(x, y):
 <p>python没有 public、private。</p>
 <p>默认都是公开的。函数前加"__"表示私有的，外部不能直接访问。</p>
 <p>变量前加"__"表示私有的，但是使用“_类名__变量名”仍然可以访问，但是不建议这么访问。</p>
+
+<h2>面向对象3大特性</h2>
+
+<h3>封装性</h3>
+<p>类就是一个封装性的体现。以后在实际工作中，慢慢体会。是个很抽象的概念。</p>
+
+<h3>继承性</h3>
+<p>python允许多继承的。如果单继承都没用好，最好别用python的多继承。</p>
+<p>语法上，避免定义重复的属性和方法。</p>
+<pre><code>class Human():
+	sum = 0
+
+	def __init__(self, name, age):
+		self.name = name
+		self.age = age
+
+	def get_name(self):
+		print(self.name)
+
+	def do_homework(self):
+		print('This is a parent method')
+</code></pre>
+<pre><code>from c6 import Human
+class Student(Human):
+
+	def __init__(self, school, name, age):
+		self.school = school
+		# 子类调用父类的构造函数，
+		# 类调用了实例方法，虽然成功了，但是逻辑说不通。
+		# 类调用类方法，对象调用实例方法。
+		# Human.__init__(self, name, age)
+
+		# 推荐做法
+		super(Student, self).__init__(name, age)
+
+	def do_homework(self):
+		super(Student, self).do_homework()
+		print('english homework')
+
+
+student1 = Student('人民路小学', '石敢当', 18)
+# print(Student.sum)
+# print(student1.sum)
+# student1.get_name()
+# print(student1.name)
+# print(student1.age)
+student1.do_homework()</code></pre>
+
+<h3>多态性</h3>
