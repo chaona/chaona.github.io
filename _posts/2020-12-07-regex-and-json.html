@@ -1,0 +1,62 @@
+---
+layout: post
+title:  "第8章 正则表达式与JSON"
+keywords: "正则表达式,JSON"
+description: "正则表达式与JSON是原生爬虫的基础。"
+date: 2020-12-07
+category: python
+---
+
+<p>正则表达式与JSON是原生爬虫的基础。</p>
+<p><a href="https://baike.baidu.com/item/正则表达式/1700215?fr=aladdin">百度百科——正则表达式</a></p>
+
+<h2>初识正则表达式</h2>
+<p>正则表达式是一个特殊的字符序列，检测一个字符串是否与我们所设定的字符数列，相匹配。</p>
+<p>作用：快速检索文本、实现一些替换文本的操作。</p>
+<pre><code>import re
+
+a = "Java|C++|C|Javascript|Python"
+
+r = re.findall('Python', a)
+
+if len(r) > 0:
+	print('Yes')
+else:
+	print('No')</code></pre>
+
+
+<h2>元字符与普通字符</h2>
+<pre><code>import re
+
+a = "Java0C++7C8Javascript9Python4C#"
+r = re.findall('Python', a) # Python 普通字符
+
+b = "Java0C++7C8Javascript9Python4C#"
+z = re.findall('\d', a) # \d 元字符
+print(r)
+print(z)
+# ['Python']
+# ['0', '7', '8', '9', '4']</code></pre>
+
+<h2>字符集</h2>
+<p>[]括起来，表示字符集，如果跟上普通字符，普通字符表示定界的作用。</p>
+<p>[]中的字符表示“或”的关系。[^]表示取反。</p>
+<p>[c-f]表示把c到f都匹配。</p>
+<pre><code>import re
+
+s = 'abc, adc, afc, aec, ahc, acc'
+# 找出字符中间是c或者f的字符
+r = re.findall('a[cf]c', s) #包含c或者f
+print(r)
+# ['afc', 'acc']
+r2 = re.findall('a[^cf]c', s) #排除c或者f
+print(r2)
+# ['abc', 'adc', 'aec', 'ahc']
+
+r2 = re.findall('a[c-f]c', s) #c到f
+print(r2)
+# ['adc', 'afc', 'aec', 'acc']</code></pre>
+
+<h3>概括字符集（七月老师自己总结的）</h3>
+<p>\d \D \w \W \s 空白字符 \S 非空白字符</p>
+<p>\d等同于字符集[0-9]; \w等同于字符集[A-Za-z0-9_]; </p>
