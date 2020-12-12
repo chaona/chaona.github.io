@@ -58,5 +58,56 @@ print(r2)
 # ['adc', 'afc', 'aec', 'acc']</code></pre>
 
 <h3>概括字符集（七月老师自己总结的）</h3>
-<p>\d \D \w \W \s 空白字符 \S 非空白字符</p>
+<p>\d \D \w \W \s 空白字符 \S 非空白字符 . 匹配除换行符\n之外其他所有字符</p>
 <p>\d等同于字符集[0-9]; \w等同于字符集[A-Za-z0-9_]; </p>
+
+<h2>数量词</h2>
+<p>*表示匹配0次或者无限次数。</p>
+<p>+表示匹配1次或者无限次数。</p>
+<p>?表示匹配0次或者1次。?可以去重</p>
+<pre><code>import re
+a = 'python1111java456php'
+
+r = re.findall('[a-z]+', a)
+r1 = re.findall('[a-z]{3,6}', a)
+print(r)
+print(r1)
+# ['python', 'java', 'php']
+# ['python', 'java', 'php']
+</code></pre>
+
+<h2>贪婪与非贪婪</h2>
+<pre><code>import re
+a = 'python1111java456php'
+# python默认贪婪模式
+# 带上?表示非贪婪，与数量词的?含义不一样。
+r = re.findall('[a-z]{3,6}?', a)
+print(r)
+# ['pyt', 'hon', 'jav', 'php']
+</code></pre>
+
+<h2>边界匹配符</h2>
+<pre><code>import re
+
+qq = '100000001'
+# 要求 4到8位
+# 边界匹配符
+r = re.findall('^\d{4,8}$', qq)
+print(r)</code></pre>
+
+<h2>组</h2>
+<p>()表示组，小括号里的是且关系</p>
+<pre><code>import re
+a = 'PythonPythonPythonPythonPython'
+
+r = re.findall('(Python){3}', a)
+print(r)</code></pre>
+
+<h2>匹配模式参数</h2>
+<p>re.I 忽略大小写；re.S 改变'.'号的匹配规则</p>
+<pre><code>import re
+lanuage = 'PythonC#\nJavaPHP'
+
+r = re.findall('c#.{1}', lanuage, re.I | re.S)
+
+print(r)</code></pre>
