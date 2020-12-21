@@ -1,0 +1,98 @@
+---
+layout: post
+title:  "第9章 Python的枚举类型"
+keywords: "枚举,枚举类型"
+description: "Python的枚举类型"
+date: 2020-12-21
+category: python
+---
+
+<p>类型如何在计算机中描述？比如QQ会员：绿钻、黄钻、红钻、黑钻</p>
+<pre><code>
+1 黄钻
+2 绿钻
+3 黑钻
+4 黄钻
+</code></pre>
+
+
+<h2>枚举其实是一个类</h2>
+<p>在Python中，一切皆对象。</p>
+<pre><code>
+from enum import Enum
+
+class VIP(Enum):
+    YELLOW = 1
+    GREEN = 2
+    BLACK = 3
+    RED = 4
+
+print(VIP.YELLOW)
+# VIP.YELLOW
+</code></pre>
+
+<h2>枚举和普通类相比有什么优势?</h2>
+<p>字典 dict 和 普通类也可以实现类似枚举的功能，但是他们有如下缺点：</p>
+<p>1、可变。 <br>2、没有防止相同标签的功能。</p>
+
+
+<h2>枚举类型、枚举名称与枚举值</h2>
+<pre><code>
+from enum import Enum
+
+class VIP(Enum):
+    YELLOW = 1
+    GREEN = 2
+    BLACK = 3
+    RED = 4
+
+print(type(VIP.YELLOW))
+print(VIP.YELLOW.name)
+print(VIP.YELLOW.value)
+
+# enum 'VIP'
+# YELLOW
+# 1
+
+for v in VIP:
+    print(v)
+
+</code></pre>
+
+<h2>枚举的比较运算</h2>
+<p>==, is </p>
+
+<h2>枚举注意事项</h2>
+<p>标签不能重复。如果两个标签的枚举值相等，建议使用别名，YELLOW_ALIAS。枚举遍历的时候，不会遍历别名。</p>
+
+<h2>枚举转换</h2>
+<p>在数据库中存储，建议使用数字；在代码中存储，建议使用名称。</p>
+<p>代码可读性排第一，性能排第二。</p>
+<pre><code>
+from enum import Enum
+
+class VIP(Enum):
+    YELLOW = 1
+    GREEN = 2
+    BLACK = 3
+    RED = 4
+
+a = 1
+print(VIP(a))
+# VIP.YELLOW
+</code></pre>
+
+<h2>枚举小结</h2>
+<p>枚举是单例模式实现的，所以不能实例化。</p>
+<p>小公司里，不需要使用设计模式，因为代码总是变来变去。设计模式：对扩展是开放的，对修改是关闭的。</p>
+<pre><code>
+from enum import IntEnum,unique
+
+@unique
+class VIP(IntEnum):
+    YELLOW = 1
+    GREEN = 1
+    BLACK = 3
+    RED = 4
+# ValueError: duplicate values found in  enum 'VIP' : GREEN -> YELLOW
+</code></pre>
