@@ -1,0 +1,315 @@
+---
+layout: post
+title:  "第12章 Pythonic风格"
+keywords: "pythonic"
+description: "如何写出优质的Pythonic风格的代码"
+date: 2020-12-23
+category: python
+---
+
+<p>如何写出优质的Pythonic风格的代码。包括：如何让字典保持有序、lmbda表达式的应用等高级Python知识</p>
+<p>产品是需要“打磨”出来的！！</p>
+
+
+<h2>用字典映射代替switch case语句</h2>
+<pre><code>
+day = 7
+
+def get_sunday():
+    return 'Sunday'
+
+def get_monday():
+    return 'Monday'
+
+def get_tuesday():
+    return 'Tuesday'
+
+def get_default():
+    return 'Unkown'
+
+switcher = {
+    0: get_sunday,
+    1: get_monday,
+    2: get_tuesday
+}
+
+day_name = switcher.get(day, get_default)()
+print(day_name)
+
+</code></pre>
+
+
+<h2>列表推导式</h2>
+<p>根据已经存在的list列表，创建一个新的列表。</p>
+<p>如果选择式的进行创建list，才建议使用。否则推荐 for 循环或者map函数。</p>
+<p>除了list列表，set集合、dict字典、tuple元组也可以被推导。</p>
+<pre><code>
+a = [1, 2, 3, 4, 5, 6, 7, 8]
+
+b = [i**2 for i in a]
+print(b)
+# [1, 4, 9, 16, 25, 36, 49, 64]
+
+# 选择式
+c = {i**2 for i in a if i >= 5}
+print(c)
+# {64, 25, 36, 49}
+
+</code></pre>
+
+
+<h3>字典如何编写列表推导式</h3>
+<pre><code>
+students = {
+    '喜小乐': 18,
+    '石敢当': 20,
+    '赖小虎': 15
+}
+
+# 只取key
+b = {key for key,value in students.items()}
+print(b)
+# {'石敢当', '赖小虎', '喜小乐'}
+
+# key，value颠倒
+c = {value: key for key, value in students.items()}
+print(c)
+# {18: '喜小乐', 20: '石敢当', 15: '赖小虎'}
+</code></pre>
+
+<h2>iterator与generator</h2>
+<h3>iterator</h3>
+<p>可迭代对象、迭代器</p>
+<p>可迭代对象，可以被 for in 循环。如：list、tuple、dict、set</p>
+
+<p>迭代器是个对象 class；普通对象是不可以被for in 循环的，需要变成迭代器。</p>
+<p>迭代器有个特性，一次性。第一次遍历后就用完了。第二次遍历不会有值。</p>
+
+<p>如果想要遍历2次，需要把对象拷贝一下。</p>
+<pre><code>
+class BookCollection:
+    def __init__(self):
+        self.data = ['《往事》', '《只能》', '《回味》']
+        self.cur = 0
+
+    def __iter__(self):
+        return self
+
+    def __next__(self):
+        if self.cur >= len(self.data):
+            raise StopIteration()
+
+        r = self.data[self.cur]
+        self.cur += 1
+        return r
+
+books = BookCollection()
+
+# print(next(books))
+# print(next(books))
+# print(next(books))
+# 《往事》
+# 《只能》
+# 《回味》
+
+import copy
+# copy浅拷贝；deepcopy深拷贝
+books_copy = copy.deepcopy(books)
+
+for book in books:
+    print(book)
+# 《往事》
+# 《只能》
+# 《回味》
+for book in books_copy:
+    print(book)
+
+</code></pre>
+
+<h3>generator</h3>
+<p>生成器，储存的是一个算法。不占用内存</p>
+<p>注意：yield 关键字用法</p>
+<pre><code>
+def gen(max):
+    n = 0
+    while n <= max:
+        n += 1
+        yield n # 像return一样，但不会阻止循环
+
+g = gen(100)
+print(g)
+# generator object gen at 0x0000023342C6CCF0
+
+print(next(g))
+print(next(g))
+print(next(g))
+# 1
+# 2
+# 3
+
+for i in g:
+    print(i)
+
+</code></pre>
+
+<pre><code>
+m = [i for i in range(0, 11)]
+print(m)
+# [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+n = (i for i in range(0, 11))
+print(n)
+# generator object <genexpr> at 0x00000202F149CCF0
+</code></pre>
+
+<h2>None</h2>
+<p>None就是None，表示不存在。不等于空字符串、空的列表、0、False，不管是类型或者值，都不相等。</p>
+<p>None本身也是一个对象 class NoneType</p>
+<pre><code>
+print(type(None))
+# class 'NoneType'
+</code></pre>
+<p>如果要进行判断是否为空的操作，建议</p>
+<pre><code>
+# 判空操作
+if a:
+
+if not a:
+</code></pre>
+
+<p>None转bool，永远是False</p>
+
+<h2>对象存在并不一定是True</h2>
+<p>影响对象是否是True，与对象的两个内置方法相关：__bool__;__len__</p>
+
+<h3>__len__与__bool__内置方法</h3>
+<p>根据__bool__判断对象真假，如果没有，则再找__len__，如果都没有，默认True</p>
+<pre><code>
+class Test():
+    def __bool__(self):
+        print('__bool__ called')
+        return False
+
+    def __len__(self):
+        print('__len__ called')
+        return 8
+
+print(bool(Test()))
+# __bool__ called
+# False
+</code></pre>
+
+<h2>装饰器的副作用</h2>
+<p>使用 <code>help(f1)</code> 原有的函数名会丢失，解决方案：使用warps</p>
+<pre><code>
+import time
+from functools import wraps
+
+def decorator(func):
+    @wraps(func)
+    def wrapper():
+        print(time.time())
+        func()
+    return wrapper
+
+@decorator
+def f1():
+    '''
+        this is f1
+    '''
+    print(f1.__name__)
+
+help(f1)
+f1()
+# f1()
+#     this is f1
+#
+# 1608703667.9965613
+# f1
+</code></pre>
+
+<h2>编程能力</h2>
+<p>当我们谈编程能力的时候我们谈的是什么？</p>
+<p>我学的东西，是为了用的。动机，是为了解决问题！！</p>
+<p>给自己定一个很高的目标。做一个高要求、好的项目。每个细节都要挖掘，都要做好。</p>
+
+<h2>py3.8新增海象运算符</h2>
+<p>walrus operator 海象运算符 := </p>
+<p>提升性能，很好用，建议多用。</p>
+<p>a = 'python'
+
+if (b := len(a)) > 5:
+    print('长度大于5；' + '真实长度为' + str(b))
+</p>
+
+<h2>f关键字做字符串拼接</h2>
+<p>模板字符串</p>
+<pre><code>
+a = 'python'
+
+if (b := len(a)) > 5:
+    print(f'{a}长度大于5；真实长度为{b}')
+
+</code></pre>
+
+<h2>py3.7新增数据类型dataclass装饰器</h2>
+<p>1、帮助生成__init__构造函数；2、__repr__;</p>
+<pre><code>
+class Student():
+
+    def __init__(self, name, age, school_name):
+        self.name = name
+        self.age = age
+        self.school_name = school_name
+
+    def test(self):
+        print(self.name)
+
+student = Student('7yue', 18, 'Tsinghua')
+
+student.test()
+# 7yue
+</code></pre>
+
+<p>使用dataclass装饰器</p>
+<pre><code>
+from dataclasses import dataclass
+
+@dataclass
+class Student():
+    name: str
+    age: int
+    school_name: str
+
+    def test(self):
+        print(self.name)
+
+student = Student('7yue', 18, 'Tsinghua')
+
+student.test()
+# 7yue
+print(student.__repr__())
+# Student(name='7yue', age=18, school_name='Tsinghua')
+
+</code></pre>
+<p>关闭某些内置函数</p>
+<pre><code>
+from dataclasses import dataclass
+
+@dataclass(repr=False)
+class Student():
+    name: str
+    age: int
+    school_name: str
+
+    def test(self):
+        print(self.name)
+
+student = Student('7yue', 18, 'Tsinghua')
+
+student.test()
+# 7yue
+print(student.__repr__())
+# __main__.Student object at 0x000001AB852DFFD0
+
+</code></pre>
