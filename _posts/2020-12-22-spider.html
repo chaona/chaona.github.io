@@ -18,7 +18,107 @@ category: python
 
 <p>模拟HTTP请求，向服务器发送这个请求，获取到服务器返回给我们的HTML。用正则表达式提前我们要的数据（名字、人气）。</p>
 
+<pre><code>
+from urllib import request
+import re
 
+
+class Spider():
+    '''
+        爬虫类
+    '''
+    
+    # 目标网址
+    url = 'https://www.huya.com/g/lol'
+    list_pattern = '<li class="game-live-item" gid="1" data-lp="\d*">([\s\S]*?)</li>'
+    name_pattern = '<i class="nick" title="([\s\S]*?)">[\s\S]*?</i>'
+    number_pattern = '<i class="js-num">([\s\S]*?)</i>'
+
+    def __fetch_content(self):
+        '''
+            抓取数据
+        '''
+
+        r = request.urlopen(Spider.url)
+        htmls = r.read()
+
+        # 格式化数据
+        htmls = str(htmls, encoding='utf-8')
+        return htmls
+
+    def __analysis(self, htmls):
+        '''
+            正则匹配
+        '''
+        list_html = re.findall(Spider.list_pattern, htmls)
+
+        anchors = []
+        for html in list_html:
+            name = re.findall(Spider.name_pattern, html)
+            number = re.findall(Spider.number_pattern, html)
+            anchor = {'name': name, 'number': number}
+            anchors.append(anchor)
+
+        return anchors
+
+    def __refine(self, anchors):
+        '''
+            list转str
+        '''
+        l = lambda anchor: {
+            'name': anchor['name'][0],
+            'number': anchor['number'][0],
+        }
+        return map(l, anchors)
+
+    def __sort(self, anchors):
+        '''
+            排序
+        '''
+        anchors = sorted(anchors, key=self.__sort_seed, reverse=True)
+        return anchors
+
+    def __sort_seed(self, anchor):
+        '''
+            观看人数格式化
+        '''
+        r = re.findall('[1-9]\d*\.?\d*', anchor['number'])
+        number = float(r[0])
+        if '万' in anchor['number']:
+            number *= 10000
+
+        return number
+
+    def __show(self, anchors):
+        '''
+            格式化输出
+        '''
+        for rank in range(0, len(anchors)):
+            print('rank ' + str(rank + 1)
+                  + ' : ' + anchors[rank]['name']
+                  + ' ' + anchors[rank]['number'])
+
+    def go(self):
+        '''
+            程序入口
+        '''
+        htmls = self.__fetch_content()
+        anchors = self.__analysis(htmls)
+        anchors = self.__refine(anchors)
+        anchors = self.__sort(anchors)
+        self.__show(anchors)
+
+spider = Spider()
+spider.go()
+
+# rank 1 : Uzi 414.7万
+# rank 2 : 虎丶牙莎莉 246.8万
+# rank 3 : 青蛙 187.9万
+# rank 4 : KeSPA杯 145.8万
+# rank 5 : 英雄联盟赛事 132.3万
+# rank 6 : Letme严君泽 131.8万
+# ...
+</code></pre>
 
 <h2>案例总结</h2>
 <h3>注释</h3>
