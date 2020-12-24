@@ -1,0 +1,227 @@
+---
+layout: post
+title:  "第14章 蓝图、模型与CodeFirst"
+keywords: "蓝图,模型,CodeFirst"
+description: "把单文件的flask重构为具有模块意义的分文件模型，接着我们会探讨如何使用CodeFirst的思想来创建数据库表。"
+date: 2020-12-24
+category: python
+---
+
+<p>把单文件的flask重构为具有模块意义的分文件模型，接着我们会探讨如何使用CodeFirst的思想来创建数据库表。</p>
+
+
+<h2>应用级别初始化 app</h2>
+<p>在app创建__init__.py文件</p>
+<pre><code>
+"""
+    app 应用
+"""
+from flask import Flask
+
+
+def create_app():
+    """
+        创建核心应用
+    """
+    app = Flask(__name__)
+    app.config.from_object('config')
+    return app
+
+</code></pre>
+<p>入口文件 fisher.py</p>
+<pre><code>
+"""
+    鱼书项目
+    入口文件
+"""
+from app import create_app
+
+app = create_app()
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', debug=app.config['DEBUG'], port=5000)
+
+</code></pre>
+
+
+<h2>用蓝图注册视图函数</h2>
+<p>app\__init__.py</p>
+<pre><code>
+"""
+    app 应用
+"""
+from flask import Flask
+
+
+def create_app():
+    """
+        创建核心应用
+    """
+    app = Flask(__name__)
+    app.config.from_object('config')
+    register_blueprint(app)
+    return app
+
+
+def register_blueprint(app):
+    """
+        注册蓝图
+    """
+    from app.web.book import web
+    app.register_blueprint(web)
+
+</code></pre>
+
+<h2>单蓝图多模块拆分视图函数</h2>
+<p>app\web\__init__.py</p>
+<pre><code>
+"""
+    web蓝图
+"""
+from flask import Blueprint
+
+web = Blueprint('web', __name__)
+
+
+from app.web import book
+from app.web import user
+</code></pre>
+
+<p>book.py</p>
+<pre><code>
+"""
+    book视图
+"""
+from flask import jsonify
+
+from helper import is_isbn_or_key
+from yushu_book import YuShuBook
+from . import web
+
+
+@web.route('/book/search/<q>/<page>/')
+def search(q, page):
+    """
+        q: 普通关键字 or ISBN
+        page: 分页参数
+        http://127.0.0.1:5000/book/search/9787506380263/1
+    """
+    isbn_or_key = is_isbn_or_key(q)
+    if isbn_or_key == 'isbn':
+        result = YuShuBook.search_by_isbn(q)
+    else:
+        result = YuShuBook.search_by_keyword(q)
+    # 返回的是API
+    return jsonify(result)
+
+</code></pre>
+
+<p>user.py</p>
+<pre><code>
+"""
+    uer
+"""
+from . import web
+
+
+@web.route('/user/login/')
+def login():
+    pass
+
+</code></pre>
+
+
+<h2>request对象</h2>
+<p>flask的request对象，要注意上下文环境。一般不会出错。</p>
+<pre><code>
+"""
+    book视图
+"""
+from flask import jsonify, request
+
+from helper import is_isbn_or_key
+from yushu_book import YuShuBook
+from . import web
+
+
+@web.route('/book/search')
+def search():
+    """
+        q: 普通关键字 or ISBN
+        page: 分页参数
+        url: /book/search?q=9787506380263&page=1
+    """
+    q = request.args['q']
+    page = request.args['page']
+    isbn_or_key = is_isbn_or_key(q)
+    if isbn_or_key == 'isbn':
+        result = YuShuBook.search_by_isbn(q)
+    else:
+        result = YuShuBook.search_by_keyword(q)
+    # 返回的是API
+    return jsonify(result)
+
+</code></pre>
+
+
+<h2>WTForms参数验证</h2>
+<p>安装 wtforms包</p>
+<pre><code>
+pipenv install wtforms
+</code></pre>
+<p>在app下，创建forms文件夹，新建book.py文件。</p>
+<pre><code>
+"""
+    Created by liukai305 on 2020-12-24 下午 15:33
+    验证层
+"""
+from wtforms import Form, StringField, IntegerField
+from wtforms.validators import Length, NumberRange
+
+
+class SearchForm(Form):
+    """
+        /book/search?q=keyword&page=1
+        图书搜索验证
+    """
+    q = StringField(validators=[Length(min=1, max=30)])
+    page = IntegerField(validators=[NumberRange(min=1, max=99)], default=1)
+
+</code></pre>
+<p>app\web\book.py</p>
+<pre><code>
+"""
+    book视图
+"""
+from flask import jsonify, request
+
+from helper import is_isbn_or_key
+from yushu_book import YuShuBook
+from . import web
+from app.forms.book import SearchForm
+
+
+@web.route('/book/search')
+def search():
+    """
+        q: 普通关键字 or ISBN
+        page: 分页参数
+        url: /book/search?q=9787506380263&page=1
+    """
+    form = SearchForm(request.args)
+
+    if form.validate():
+        q = form.q.data.strip()
+        page = form.page.data
+
+        isbn_or_key = is_isbn_or_key(q)
+        if isbn_or_key == 'isbn':
+            result = YuShuBook.search_by_isbn(q)
+        else:
+            result = YuShuBook.search_by_keyword(q)
+        # 返回的是API
+        return jsonify(result)
+    else:
+        return jsonify({'msg': '参数校验失败！'})
+
+</code></pre>
