@@ -1,0 +1,214 @@
+---
+layout: post
+title:  "第16章 flask核心机制"
+keywords: "flask核心机制,上下文"
+description: "flask最核心的是两个上下文"
+date: 2020-12-25
+category: python
+---
+
+<p>flask最核心的是两个上下文，而这两个上下中包含大量的Python高级编程应用。我们需要理解上下文的意义，并且通过借鉴flask的下文机制，学习Python的上下文管理器（With）、栈结构的应用。我们还将学习，到底如何通过阅读源码来解决问题。</p>
+
+
+
+<h2>flask中经典错误 working outside application context</h2>
+<pre><code>
+from flask import Flask, current_app
+
+app = Flask(__name__)
+
+a = current_app
+d = current_app.config['DEBUG']
+</code></pre>
+<p>RuntimeError: Working outside of application context.</p>
+
+
+<h2>AppContext、RequestContext、Flask与Request之间的关系</h2>
+<p>flask中有两个上下文：应用上下文 AppContext、请求上下文RequestContext</p>
+<p>他们都是对象，应用上下文AppContext是对Flask核心对象的封装；请求上下文RequestContext是对Request请求类的封装。在此封装之上提供了一些好用的方法，仅此而已，不神秘。</p>
+
+<p>LocalProxy提供了间接操作两个上下文的能力。</p>
+
+
+<h2>详解flask上下文与出入栈</h2>
+<p>flask最晦涩难懂，也是它最经典的部分。</p>
+<p>push 推入；入栈</p>
+<p><img class="img-responsive center-block" src="{{ site.url }}/static/images/201225/flask_works.png" /></p>
+<p><strong>重点原理：如果栈顶为空，AppContext先入栈，再推入RequestContext</strong></p>
+<p>current_app(Local Proxy)和request(Local Proxy)永远是指向栈顶的。</p>
+
+<p>如果两个栈顶是空的，会出现unbound</p>
+<p>test\test.py</p>
+<pre><code>
+from flask import Flask, current_app
+
+app = Flask(__name__)
+
+a = current_app
+d = current_app.config['DEBUG']
+</code></pre>
+<p>解决思路：使用上下文对象，手动推入栈。（but，目前有些问题）</p>
+<pre><code>
+from flask import Flask, current_app, request, Request
+
+
+app = Flask(__name__)
+ctx = app.app_context()
+ctx.push()
+a = current_app
+d = current_app.config['DEBUG']
+ctx.pop()
+</code></pre>
+
+
+<h2>flask上下文与with语句</h2>
+<p>可以对实现了上下文协议的对象使用with</p>
+<p>对于实现了上下文协议的对象，我们称为上下文管理器</p>
+<p>一个对象实现了__enter__ __exit__ 就是上下文管理器。</p>
+<p>上下文表达式必须返回上下文管理器。</p>
+<pre><code>
+clas A:
+	def __enter__(self):
+		a = 1
+		return a
+
+	def __exit__(self):
+		b = 2
+
+# 上下文表达式
+with A() as obj_A:
+	pass
+</code></pre>
+<p><strong>注意：as后面的值，并不是上下文管理器对象，而是__enter__返回给我们的值。</strong></p>
+
+<p>with语句，主要是对资源的管理。比如操作数据库。1.连接数据库2.sql3.释放资源</p>
+<p>连接数据库可以写在__enter__;操作sql可以写在with代码块；释放资源可以写在__exit__</p>
+<p>比如文件读写</p>
+<pre><code>
+with open(r'') as f:
+	print(f.read())
+</code></pre>
+
+<h3>使用with表达式优化代码</h3>
+<p>test\test.py</p>
+<pre><code>
+from flask import Flask, current_app, request, Request
+
+
+app = Flask(__name__)
+# ctx = app.app_context()
+# ctx.push()
+# a = current_app
+# d = current_app.config['DEBUG']
+# ctx.pop()
+
+with app.app_context():
+    a = current_app
+    d = current_app.config['DEBUG']
+
+</code></pre>
+
+
+<h2>详解上下文管理器的__exit__方法</h2>
+<h3>完善上下文管理器</h3>
+<p>使用断点调试，可以更好的查看</p>
+<pre><code>
+class MyResource:
+    def __enter__(self):
+        # 连接资源
+        print('connect to resource')
+        return self
+
+    def __exit__(self, exc_type, exc_val, exc_tb):
+        """
+        返回值：只要两种 True or False
+        True：不会再with 语句外部抛出异常
+        False：在 with 语句外部还会抛出异常
+        如果什么不返回，返回None 代表返回False
+        """
+        if exc_tb:
+            # 处理异常
+            print('process exception')
+        else:
+            print('no exception')
+        print('close resource connection')
+
+    def query(self):
+        # 查询操作
+        print('query data')
+
+
+try:
+    with MyResource() as resource:
+        1/0
+        resource.query()
+except Exception as ex:
+    pass
+
+</code></pre>
+
+
+<h2>阅读源码解决db.create_all的问题</h2>
+<p>解决方式一：</p>
+<pre><code>
+"""
+    app 应用
+"""
+from flask import Flask
+from app.models.book import db
+
+
+def create_app():
+    """
+        创建核心应用
+    """
+    app = Flask(__name__)
+    app.config.from_object('app.secure')
+    app.config.from_object('app.setting')
+    register_blueprint(app)
+
+    db.init_app(app)
+    db.create_all(app=app)
+    return app
+
+
+def register_blueprint(app):
+    """
+        注册蓝图
+    """
+    from app.web.book import web
+    app.register_blueprint(web)
+
+</code></pre>
+<p>解决方式二</p>
+<pre><code>
+"""
+    app 应用
+"""
+from flask import Flask
+from app.models.book import db
+
+
+def create_app():
+    """
+        创建核心应用
+    """
+    app = Flask(__name__)
+    app.config.from_object('app.secure')
+    app.config.from_object('app.setting')
+    register_blueprint(app)
+
+    db.init_app(app)
+    with app.app_context():
+        db.create_all()
+    return app
+
+
+def register_blueprint(app):
+    """
+        注册蓝图
+    """
+    from app.web.book import web
+    app.register_blueprint(web)
+
+</code></pre>
