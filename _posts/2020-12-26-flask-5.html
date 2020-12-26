@@ -1,0 +1,241 @@
+---
+layout: post
+title:  "第18章 ViewModel、面向对象与重构"
+keywords: "ViewModel,面向对象,重构"
+description: "ViewModel的意义。通过重构来一步步揭示到底什么才是对象，如何写出面向对象的代码来。思维的训练，永远比业务要重要。"
+date: 2020-12-26
+category: python
+---
+
+<p>ViewModel的意义。通过重构来一步步揭示到底什么才是对象，如何写出面向对象的代码来。思维的训练，永远比业务要重要。</p>
+
+
+<h2>ViewModel的基本概念</h2>
+<p>把从数据库或者api获取的原始数据进行裁剪、修饰、合并。</p>
+
+
+<h2>使用ViewModel处理书籍数据</h2>
+<p>新建 app\view_models\book.py</p>
+<pre><code>
+class BookViewModel:
+    @classmethod
+    def package_single(cls, data, keyword):
+        returned = {
+            'books': [],
+            'total': 0,
+            'keyword': keyword
+        }
+        if data:
+            returned['total'] = 1
+            returned['books'] = [cls.__cut_book_data(data)]
+        return returned
+
+    @classmethod
+    def package_collection(cls, data, keyword):
+        returned = {
+            'books': [],
+            'total': 0,
+            'keyword': keyword
+        }
+        if data:
+            returned['total'] = data['total']
+            # 列表推导式
+            returned['books'] = [cls.__cut_book_data(book) for book in data['books']]
+        return returned
+
+    @staticmethod
+    def __cut_book_data(data):
+        """
+        裁剪数据
+        """
+        book = {
+            'title': data['title'],
+            'publisher': data['publisher'] or '',
+            'pages': data['pages'] or '',
+            'author': '、'.join(data['author']),
+            'price': data['price'] or '',
+            'summary': data['summary'] or '',
+            'image': data['image']
+        }
+        return book
+
+</code></pre>
+
+<p>修改 app\web\book.py</p>
+<pre><code>
+"""
+    book视图
+"""
+from flask import jsonify, request
+
+from app.libs.helper import is_isbn_or_key
+from app.spider.yushu_book import YuShuBook
+from . import web
+from app.forms.book import SearchForm
+from ..view_models.book import BookViewModel
+
+
+@web.route('/book/search')
+def search():
+    """
+        q: 普通关键字 or ISBN
+        page: 分页参数
+        url: /book/search?q=9787506380263&page=1
+    """
+    form = SearchForm(request.args)
+
+    if form.validate():
+        q = form.q.data.strip()
+        page = form.page.data
+
+        isbn_or_key = is_isbn_or_key(q)
+        if isbn_or_key == 'isbn':
+            result = YuShuBook.search_by_isbn(q)
+            result = BookViewModel.package_single(result, q)
+        else:
+            result = YuShuBook.search_by_keyword(q, page)
+            result = BookViewModel.package_collection(result, q)
+        # 返回的是API
+        return jsonify(result)
+    else:
+        return jsonify(form.errors)
+
+</code></pre>
+
+
+<h2>伪面向对象：披着面向对象外衣的面向过程</h2>
+<p>类的最基本特征： 描述特征、行为</p>
+<p>描述特征： 类变量、实例变量</p>
+<p>行为： 方法</p>
+<h3>怎么判断自己写的类是一个伪面向对象？</h3>
+<p>有大量的可以被标注classmethod 和 staticmethod，那么是封装不好的，没有体现面向对象的特性。</p>
+
+
+<h2>重构鱼书核心对象：YuShuBook</h2>
+<h3>重构 app\spider\yushu_book.py</h3>
+<pre><code>
+"""
+    鱼书api
+"""
+from app.libs.httper import HTTP
+from flask import current_app
+
+
+class YuShuBook:
+    isbn_url = 'http://t.talelin.com/v2/book/isbn/{}'
+    keyword_url = 'http://t.talelin.com/v2/book/search?q={}&count={}&start={}'
+
+    def __init__(self):
+        self.total = 0,
+        self.books = []
+
+    def search_by_isbn(self, isbn):
+        url = self.isbn_url.format(isbn)
+        # dict
+        result = HTTP.get(url)
+        self.__fill_single(result)
+        # TODO
+        # book = query_from_mysql(isbn)
+        # if book:
+        #     return book
+        # else:
+        #     save(result)
+
+    def search_by_keyword(self, keyword, page=1):
+        url = self.keyword_url.format(keyword, current_app.config['PER_PAGE'], self.calculate_start(page))
+        result = HTTP.get(url)
+        self.__fill_collection(result)
+
+    @staticmethod
+    def calculate_start(page):
+        return (page-1) * current_app.config['PER_PAGE']
+
+    def __fill_single(self, data):
+        if data:
+            self.total = 1,
+            self.books.append(data)
+
+    def __fill_collection(self, data):
+        self.total = data['total']
+        self.books = data['books']
+
+</code></pre>
+
+<h3>重构 app\view_models\book.py</h3>
+<pre><code>
+class BookViewModel:
+    """
+    单本book模型
+    """
+    def __init__(self, book):
+        self.title = book['title']
+        self.publisher = book['publisher'] or ''
+        self.pages = book['pages'] or ''
+        self.author = '、'.join(book['author'])
+        self.price = book['price'] or ''
+        self.summary = book['summary'] or ''
+        self.image = book['image']
+
+
+class BookCollection:
+    """
+    book 集合
+    """
+    def __init__(self):
+        self.total = 0
+        self.books = []
+        self.keyword = ''
+
+    def fill(self, yushu_book, keyword):
+        self.total = yushu_book.total
+        # 推导式
+        self.books = [BookViewModel(book) for book in yushu_book.books]
+        self.keyword = keyword
+</code></pre>
+
+<h3>重构 app\web\book.py</h3>
+<pre><code>
+"""
+    book视图
+"""
+from flask import jsonify, request
+
+from app.libs.helper import is_isbn_or_key
+from app.spider.yushu_book import YuShuBook
+from . import web
+from app.forms.book import SearchForm
+from app.view_models.book import BookCollection
+
+
+@web.route('/book/search')
+def search():
+    """
+        q: 普通关键字 or ISBN
+        page: 分页参数
+        url: /book/search?q=9787506380263&page=1
+    """
+    form = SearchForm(request.args)
+    books = BookCollection()
+    if form.validate():
+        q = form.q.data.strip()
+        page = form.page.data
+
+        isbn_or_key = is_isbn_or_key(q)
+        yushu_book = YuShuBook()
+        if isbn_or_key == 'isbn':
+            yushu_book.search_by_isbn(q)
+        else:
+            yushu_book.search_by_keyword(q, page)
+        books.fill(yushu_book, q)
+        return jsonify(books) # python不能直接序列化对象
+    else:
+        return jsonify(form.errors)
+
+</code></pre>
+
+
+<h2>从json序列化看代码解释权反转</h2>
+
+
+<h2>详解单页面与网站的区别</h2>
+
