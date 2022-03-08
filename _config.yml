@@ -1,4 +1,4 @@
-url: "http://www.chaona.net" # the base hostname & protocol for your site, e.g. http://example.com
+url: "https://chaona.github.io" # the base hostname & protocol for your site, e.g. http://example.com
 
 # url标准化
 permalink: /:categories/:title.html
