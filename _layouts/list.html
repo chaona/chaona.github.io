@@ -5,7 +5,7 @@
 	<!-- 面包屑导航 -->
 	<div class="large-12 columns">
 		<div class="breadcrumb">
-			<i class="fi-marker"></i> <a href="{{ site.url }}/">Home</a> / 
+			<i class="fi-marker"></i> <a href="/">Home</a> / 
 			<span>Blog</span>
 		</div>
 	</div>
@@ -22,7 +22,7 @@
 		<!-- 分页代码 -->
 		{% if paginator.previous_page %}
 		    <div class="small-6 columns text-center">
-		    	<a class="button info round small" href="{{ site:url }}{{ paginator.previous_page_path }}">上一页</a>
+		    	<a class="button info round small" href="{{ paginator.previous_page_path }}">上一页</a>
 		    </div>
 		{% else %}
 			<div class="small-6 columns text-center">
@@ -31,7 +31,7 @@
 		{% endif %}
 		{% if paginator.next_page %}
 		    <div class="small-6 columns text-center">
-		    	<a class="button info round small" href="{{ site:url }}{{ paginator.next_page_path }}">下一页</a>
+		    	<a class="button info round small" href="{{ paginator.next_page_path }}">下一页</a>
 		    </div>
 		{% else %}
 		    <div class="small-6 columns text-center">

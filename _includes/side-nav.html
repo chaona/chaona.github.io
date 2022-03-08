@@ -3,10 +3,10 @@
 	<nav>
 		<ul class="side-nav" id="aside-nav" data-id="{{ page.category }}">
 			<!-- <li class="active"><a href="{{ site.url }}/">Home</a></li> -->
-			<li id="cat_blog"><a href="{{ site.url }}/blog/">All Blog <span class="label round">{{ site.posts.size }}</span></a></li>
+			<li id="cat_blog"><a href="blog/">All Blog <span class="label round">{{ site.posts.size }}</span></a></li>
 			{% for category in site.categories %}
 			<li id="cat_{{ category | first }}">
-				<a href="{{ site.url }}/{{ category | first }}/">
+				<a href="{{ category | first }}/">
 					{{ category | first }} <span class="label round">{{ category | last | size }}</span>
 				</a>
 			</li>
