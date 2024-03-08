@@ -1,21 +1,56 @@
 ---
 layout: default
-title: "侯马网站建设_小程序开发公司 - 超纳网络"
-keywords: "侯马网站建设,网站制作,小程序开发"
-description: "山西超纳网络科技有限公司，专业从事企业网站建设、网络推广7年，专注企业营销型网站建设、响应式网站制作、微信企业小程序开发、微信商城小程序开发、百度智能小程序开发。"
+title: "创普管模"
+keywords: ""
+description: ""
 
 city: 侯马
 ---
 
 <!-- blog -->
-<ul class="no-bullet">
+<ul>
 	<!-- 循环输出最新的10条 -->
 	{% for post in site.posts offset:0 limit:10 %} 
-
-	<li class="large-6 columns">
-		<span class="left">{{ post.date | date: "%Y-%m-%d" }}</span> 
-		<a href="{{ post.url }}">{{ post.title }}</a>
+  	<li>
+  		<a href="{{ post.url }}">
+	        <div class="index-newsdesc">
+	            <h3 class="name">{{ post.title }} <span class="date">{{ post.date | date: "%Y-%m-%d" }}</span></h3>
+	        </div>
+	    </a>
 	</li>
 	{% endfor %}
+    <!-- <li><a href="a/113.html">
+        <div class="index-newsdesc">
+            <h3 class="name">Maintenance of Cast Pipe Mould after Taking Out <span class="date">2022-05-15</span></h3>
+        </div>
+    </a></li><li><a href="a/112.html">
+        <div class="index-newsdesc">
+            <h3 class="name">Working Condition of Pipe Mould <span class="date">2022-05-08</span></h3>
+        </div>
+    </a></li><li><a href="a/111.html">
+        <div class="index-newsdesc">
+            <h3 class="name">Storage of mould after use <span class="date">2022-05-01</span></h3>
+        </div>
+    </a></li><li><a href="a/110.html">
+        <div class="index-newsdesc">
+            <h3 class="name">Grinding and Peening of Casting Pipe Mould <span class="date">2022-04-23</span></h3>
+        </div>
+    </a></li><li><a href="a/109.html">
+        <div class="index-newsdesc">
+            <h3 class="name">Management of Pipe Mould before Use <span class="date">2022-04-17</span></h3>
+        </div>
+    </a></li><li><a href="a/1081.html">
+        <div class="index-newsdesc">
+            <h3 class="name">Key Points of Using Cast Pipe Mould <span class="date">2022-04-11</span></h3>
+        </div>
+    </a></li><li><a href="a/1071.html">
+        <div class="index-newsdesc">
+            <h3 class="name">Preparations before Using the Casting Pipe Mould <span class="date">2022-04-04</span></h3>
+        </div>
+    </a></li><li><a href="a/1061.html">
+        <div class="index-newsdesc">
+            <h3 class="name">Obtained a national utility model patent <span class="date">2022-03-28</span></h3>
+        </div>
+    </a></li> -->
 
 </ul>
