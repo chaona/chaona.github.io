@@ -71,17 +71,39 @@ video {
         video::-moz-media-controls {
             display: none !important;
         }
+
         </style>
     </head>
     <body>
 
 
-<video id="videoPlayer" controls style="display: block;">
+<div id="box">
+    <h1>404 NOT FOUND <span id="showPwd">!</span> </h1>
+    <div id="chekPwd" style="display:none;">
+        <input type="text" id="inputField">
+        <button onclick="checkInput()">检查</button>
+    </div>
+</div>
+
+<div id="video-container" style="display:none;">
+        <video id="videoPlayer" controls style="display: block;">
             <!-- <source src="your-video.mp4" type="video/mp4"> -->
             <source src="NK_BF0.webm" type="video/webm">
             <!-- 添加其他视频格式的<source>元素，以便跨浏览器兼容性 -->
             您的浏览器不支持HTML5视频标签。
         </video>
+
+
+        <button id="playButton">随机检查</button>
+    <button id="playButton1">接受</button>
+    <button id="playButton2">正常慢</button>
+    <button id="playButton3">侧身</button>
+    <button id="playButton5">正常快</button>
+    <button id="playButton4">骑手</button>
+    <button id="playButton6">结束</button>
+    <button id="playButton7">享受</button>
+</div>
+
 
 
 <script src="https://code.jquery.com/jquery-1.12.4.js" integrity="sha256-Qw82+bXyGq6MydymqBxNPYTaUXXq7c8v3CwiYwLLNXU=" crossorigin="anonymous"></script>
@@ -92,23 +114,28 @@ video {
 
 
 
-<div id="video-container">
-        
 
-
-        
-    </div>
-    <button id="playButton">随机检查</button>
-    <button id="playButton1">接受</button>
-    <button id="playButton2">正常慢</button>
-    <button id="playButton3">侧身</button>
-    <button id="playButton5">正常快</button>
-    <button id="playButton4">骑手</button>
-    <button id="playButton6">结束</button>
-    <button id="playButton7">享受</button>
+    
 
     
     <script>
+        $('#showPwd').click(function(){
+            $('#chekPwd').show();
+        });
+
+        function  checkInput() {
+            var inputField = document.getElementById('inputField');
+            var inputValue = inputField.value.trim(); // 获取输入框的值，去除前后空格
+
+            // 判断输入值是否正确
+            if (inputValue === 'Admin123..') {
+                $('#box').hide();
+                $('#video-container').show();
+            } else {
+                alert('输入错误！');
+            }
+        }
+
         // 获取按钮和视频元素
         var playButton = document.getElementById('playButton');
         var playButton1 = document.getElementById('playButton1');
