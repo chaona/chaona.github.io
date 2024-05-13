@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+        <title>center</title>
+        <!-- 引入 WeUI CDN 链接 -->
+        <link rel="stylesheet" href="https://res.wx.qq.com/open/libs/weui/2.3.0/weui.min.css"/>
+
+        <style type="text/css">
+            /** 使用weui变量来开发黑暗模式 **/
+            .body {
+                background-color: var(--weui-BG-0);
+            }
+
+            .page .placeholder {
+    margin: 5px;
+    padding: 0 10px;
+    background-color: var(--weui-BG-1);
+    height: 2.3em;
+    line-height: 2.3;
+    text-align: center;
+    color: var(--weui-FG-1);
+}
+        </style>
+    </head>
+    <body>
+
+
+<div class="page">
+    <div class="page__hd">
+        <h1 class="page__title">Flex</h1>
+        <p class="page__desc">Flex布局</p>
+    </div>
+    <div class="page__bd page__bd_spacing">
+        <div class="weui-flex">
+            <div class="weui-flex__item">
+                <div class="placeholder">
+                    <a href="NK/love.html">doc1</a>
+                </div>
+            </div>
+        </div>
+        <div class="weui-flex">
+            <div class="weui-flex__item">
+                <div class="placeholder">
+                    <a href="NK/look.html">doc2</a>
+                </div>
+            </div>
+            <div class="weui-flex__item"><div class="placeholder">weui</div></div>
+        </div>
+        <div class="weui-flex">
+            <div class="weui-flex__item"><div class="placeholder">weui</div></div>
+            <div class="weui-flex__item"><div class="placeholder">weui</div></div>
+            <div class="weui-flex__item"><div class="placeholder">weui</div></div>
+        </div>
+        <div class="weui-flex">
+            <div class="weui-flex__item"><div class="placeholder">weui</div></div>
+            <div class="weui-flex__item"><div class="placeholder">weui</div></div>
+            <div class="weui-flex__item"><div class="placeholder">weui</div></div>
+            <div class="weui-flex__item"><div class="placeholder">weui</div></div>
+        </div>
+        <div class="weui-flex">
+            <div><div class="placeholder">weui</div></div>
+            <div class="weui-flex__item"><div class="placeholder">weui</div></div>
+            <div><div class="placeholder">weui</div></div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script src="lib/jquery.js"></script>
+<script src="lib/common.js?v=1.1"></script>
+
+<script type="text/javascript" src="https://res.wx.qq.com/t/wx_fed/weui.js/res/1.2.18/weui.min.js"></script>
+<script src="https://res.wx.qq.com/open/js/jweixin-1.6.0.js"></script>
+
+
+<script type="text/javascript">
+    // 检查登录状态
+    if(!window.base.getCookie('accessusertoken')){
+        window.location.href = '/';
+    }
+</script>
+
+
+
+
+    </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
