@@ -25,9 +25,11 @@
         </style>
     </head>
     <body>
+<div id="box">
+    <h1>404 NOT FOUND <span id="showPwd">!</span> </h1>
+</div>
 
-
-<div class="page">
+<div class="page" id="video-container" style="display:none;">
     <div class="page__hd">
         <h1 class="page__title">Flex</h1>
         <p class="page__desc">Flex布局</p>
@@ -51,7 +53,14 @@
                     <a href="PW/love.html">cos</a>
                 </div>
             </div>
+            
+            <div class="weui-flex__item">
+                <div class="placeholder">
+                    <a href="HS/love.html">nurse</a>
+                </div>
+            </div>
         </div>
+
         <div class="weui-flex">
             <div class="weui-flex__item">
                 <div class="placeholder">
@@ -122,6 +131,9 @@
     // 检查登录状态
     if(!window.base.getCookie('accessusertoken')){
         window.location.href = '/';
+    } else {
+        $('#box').hide();
+        $('#video-container').show();
     }
 </script>
 
